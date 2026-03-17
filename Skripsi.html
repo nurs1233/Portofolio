@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio – Ripan Nursalam | Evaluasi Terminal Leuwi Panjang</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e1117;
+    --paper: #f5f0e8;
+    --cream: #ede7d5;
+    --gold: #c9963a;
+    --rust: #b74b2e;
+    --slate: #3a4a5c;
+    --mist: #d4cfc3;
+    --node-color: #2a5f8f;
+    --place-color: #b74b2e;
+    --design-color: #2e7d4f;
+    --accent: #c9963a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(14,17,23,0.95);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 3rem;
+    border-bottom: 1px solid rgba(201,150,58,0.2);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--gold); letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; color: rgba(245,240,232,0.7);
+    text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    background: var(--ink);
+    position: relative; overflow: hidden;
+    padding: 8rem 3rem 4rem;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; max-width: 1200px; margin: 0 auto; width: 100%;
+    align-items: center;
+  }
+  .hero-bg-text {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(8rem, 18vw, 22rem);
+    font-weight: 900; opacity: 0.03;
+    color: var(--paper); white-space: nowrap;
+    user-select: none; pointer-events: none;
+  }
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; color: var(--gold);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    font-weight: 900; line-height: 1.15;
+    color: var(--paper);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-subtitle {
+    font-size: 1rem; color: rgba(245,240,232,0.65);
+    max-width: 480px; margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-meta {
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .meta-row {
+    font-size: 0.85rem; color: rgba(245,240,232,0.5);
+    display: flex; gap: 0.8rem;
+  }
+  .meta-row strong { color: var(--gold); font-weight: 500; }
+  .hero-visual {
+    display: flex; align-items: center; justify-content: center;
+  }
+  .node-place-diagram {
+    width: 340px; height: 340px; position: relative;
+  }
+  .diagram-svg { width: 100%; height: 100%; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 5rem 3rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--gold);
+    letter-spacing: 0.25em; text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700; line-height: 1.2;
+    color: var(--ink); margin-bottom: 1rem;
+  }
+  .section-divider {
+    width: 60px; height: 3px; background: var(--gold);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── INTRO ── */
+  .intro { background: var(--paper); }
+  .intro-grid {
+    display: grid; grid-template-columns: 3fr 2fr;
+    gap: 5rem; align-items: start;
+  }
+  .intro-text { font-size: 1.05rem; color: #2a2a2a; }
+  .intro-text p { margin-bottom: 1.2rem; }
+  .highlight-box {
+    background: var(--ink); color: var(--paper);
+    padding: 2rem; border-left: 4px solid var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-style: italic; line-height: 1.7;
+    margin-top: 1.5rem;
+  }
+  .side-stats { display: flex; flex-direction: column; gap: 1.5rem; }
+  .stat-card {
+    background: var(--cream); padding: 1.5rem;
+    border-top: 3px solid var(--gold);
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 900;
+    color: var(--ink); line-height: 1;
+  }
+  .stat-unit {
+    font-size: 1rem; color: var(--gold); font-weight: 500;
+  }
+  .stat-label {
+    font-size: 0.82rem; color: #666; margin-top: 0.3rem;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  /* ── INDEX CARDS ── */
+  .index-section { background: var(--ink); }
+  .index-section .section-title { color: var(--paper); }
+  .index-section .section-label { color: var(--gold); }
+  .index-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px; background: rgba(201,150,58,0.15);
+    border: 1px solid rgba(201,150,58,0.15);
+    margin-top: 1rem;
+  }
+  .index-card {
+    background: #141820; padding: 2.5rem;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .index-card:hover { background: #1a2030; }
+  .index-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .card-node::before { background: var(--node-color); }
+  .card-place::before { background: var(--place-color); }
+  .card-design::before { background: var(--design-color); }
+  .card-icon {
+    font-size: 2.5rem; margin-bottom: 1.2rem; display: block;
+  }
+  .card-dim {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .card-node .card-dim { color: var(--node-color); }
+  .card-place .card-dim { color: var(--place-color); }
+  .card-design .card-dim { color: var(--design-color); }
+  .card-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--paper);
+    margin-bottom: 0.8rem;
+  }
+  .card-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 900; line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .card-node .card-score { color: #5b9fd4; }
+  .card-place .card-score { color: #e07a62; }
+  .card-design .card-score { color: #5ec487; }
+  .card-category {
+    font-size: 0.78rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: rgba(245,240,232,0.5);
+    margin-bottom: 1.2rem;
+  }
+  .card-desc { font-size: 0.9rem; color: rgba(245,240,232,0.65); line-height: 1.7; }
+  .card-indicators { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .ind-row { display: flex; justify-content: space-between; align-items: center; }
+  .ind-name { font-size: 0.8rem; color: rgba(245,240,232,0.6); }
+  .ind-bar-wrap { flex: 1; margin: 0 0.8rem; background: rgba(255,255,255,0.08); height: 4px; }
+  .ind-bar { height: 4px; }
+  .card-node .ind-bar { background: var(--node-color); }
+  .card-place .ind-bar { background: var(--place-color); }
+  .card-design .ind-bar { background: var(--design-color); }
+  .ind-val { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: rgba(245,240,232,0.7); }
+
+  /* ── RESEARCH ── */
+  .research { background: var(--cream); }
+  .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .subsection-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700; color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .step-list { display: flex; flex-direction: column; gap: 0; margin-top: 1rem; }
+  .step { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--gold); min-width: 28px;
+    padding-top: 0.1rem;
+  }
+  .step-content strong {
+    display: block; font-size: 0.92rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 0.2rem;
+  }
+  .step-content p { font-size: 0.85rem; color: #555; }
+  .method-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+  .pill {
+    background: var(--ink); color: var(--paper);
+    font-size: 0.75rem; padding: 0.3rem 0.8rem;
+    border-radius: 2px; font-weight: 500;
+  }
+
+  /* ── AREA ── */
+  .study-area { background: var(--paper); }
+  .area-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: start; }
+  .kelurahan-table {
+    width: 100%; border-collapse: collapse; margin-top: 1rem;
+  }
+  .kelurahan-table th {
+    background: var(--ink); color: var(--paper);
+    padding: 0.7rem 1rem; text-align: left;
+    font-size: 0.78rem; text-transform: uppercase;
+    letter-spacing: 0.08em; font-weight: 500;
+  }
+  .kelurahan-table td {
+    padding: 0.65rem 1rem; font-size: 0.85rem;
+    border-bottom: 1px solid var(--mist);
+  }
+  .kelurahan-table tr:hover td { background: var(--cream); }
+  .bar-cell { display: flex; align-items: center; gap: 0.6rem; }
+  .mini-bar-wrap { flex: 1; background: var(--mist); height: 6px; }
+  .mini-bar { height: 6px; background: var(--gold); }
+  .info-card {
+    background: var(--cream); padding: 2rem;
+    border-left: 3px solid var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .info-card-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.5rem; }
+  .info-card-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; }
+  .info-card-sub { font-size: 0.82rem; color: #666; margin-top: 0.2rem; }
+
+  /* ── TRANSPORT ── */
+  .transport { background: #0e1117; }
+  .transport .section-title { color: var(--paper); }
+  .transport-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1rem; }
+  .mode-card {
+    background: #141820; padding: 1.8rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.2s;
+  }
+  .mode-card:hover { border-color: rgba(201,150,58,0.3); }
+  .mode-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+  .mode-icon { font-size: 2rem; }
+  .mode-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--paper); }
+  .mode-sub { font-size: 0.78rem; color: rgba(245,240,232,0.45); }
+  .mode-rows { display: flex; flex-direction: column; gap: 0.5rem; }
+  .mode-row { font-size: 0.82rem; color: rgba(245,240,232,0.6); padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .mode-row:last-child { border: none; }
+  .route-tag {
+    display: inline-block;
+    font-size: 0.7rem; padding: 0.15rem 0.5rem;
+    border-radius: 2px; font-weight: 600;
+    margin-right: 0.3rem; letter-spacing: 0.04em;
+  }
+  .tag-blue { background: rgba(42,95,143,0.3); color: #8bbee0; }
+  .tag-red { background: rgba(183,75,46,0.3); color: #e08070; }
+  .tag-green { background: rgba(46,125,79,0.3); color: #7ec49a; }
+  .freq-highlight {
+    background: rgba(201,150,58,0.1); border: 1px solid rgba(201,150,58,0.2);
+    padding: 1.5rem; margin-top: 1.5rem;
+  }
+  .freq-number { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--gold); }
+  .freq-label { font-size: 0.8rem; color: rgba(245,240,232,0.55); margin-top: 0.2rem; }
+
+  /* ── WALKABILITY ── */
+  .walkability { background: var(--paper); }
+  .walk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .corridor-list { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem; }
+  .corridor-item { display: flex; align-items: center; gap: 1rem; }
+  .corridor-name { font-size: 0.9rem; font-weight: 500; min-width: 150px; }
+  .corridor-bar-wrap { flex: 1; background: var(--mist); height: 8px; }
+  .corridor-bar { height: 8px; transition: width 1s ease; }
+  .corridor-score { font-family: 'DM Mono', monospace; font-size: 0.82rem; font-weight: 500; min-width: 36px; text-align: right; }
+  .good { background: #2e7d4f; }
+  .fair { background: #c9963a; }
+  .poor { background: #b74b2e; }
+  .indicator-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+  .ind-card { background: var(--cream); padding: 1.3rem; }
+  .ind-card-pct { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; }
+  .ind-card-name { font-size: 0.78rem; color: #666; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
+  .good-pct { color: var(--design-color); }
+  .mid-pct { color: var(--gold); }
+  .bad-pct { color: var(--rust); }
+
+  /* ── TYPOLOGY ── */
+  .typology { background: var(--ink); padding: 5rem 3rem; }
+  .typology .section-title { color: var(--paper); }
+  .typology-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .matrix-container {
+    position: relative; background: #141820;
+    border: 1px solid rgba(201,150,58,0.2);
+    padding: 2rem;
+  }
+  .matrix-svg { width: 100%; height: auto; }
+  .typology-text {}
+  .badge {
+    display: inline-block;
+    background: rgba(201,150,58,0.15); border: 1px solid var(--gold);
+    color: var(--gold); font-size: 0.8rem;
+    padding: 0.3rem 1rem; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+    font-family: 'DM Mono', monospace;
+  }
+  .typology-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--paper); margin-bottom: 1.2rem;
+    line-height: 1.25;
+  }
+  .typology-desc { font-size: 0.95rem; color: rgba(245,240,232,0.65); margin-bottom: 1.5rem; line-height: 1.8; }
+  .char-list { display: flex; flex-direction: column; gap: 1rem; }
+  .char-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .char-dot { min-width: 8px; height: 8px; border-radius: 50%; margin-top: 0.4rem; }
+  .char-dot-gold { background: var(--gold); }
+  .char-dot-red { background: var(--rust); }
+  .char-dot-blue { background: #5b9fd4; }
+  .char-content strong { color: var(--paper); font-size: 0.9rem; display: block; }
+  .char-content p { color: rgba(245,240,232,0.55); font-size: 0.83rem; }
+
+  /* ── FINDINGS ── */
+  .findings { background: var(--cream); }
+  .findings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1rem; }
+  .finding-card { background: var(--paper); padding: 2rem; }
+  .finding-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+  .finding-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; }
+  .finding-text { font-size: 0.88rem; color: #444; line-height: 1.7; }
+  .finding-tag {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 0.2rem 0.6rem; font-weight: 600;
+  }
+  .tag-strength { background: rgba(46,125,79,0.12); color: var(--design-color); }
+  .tag-weakness { background: rgba(183,75,46,0.12); color: var(--rust); }
+  .tag-opportunity { background: rgba(201,150,58,0.12); color: var(--gold); }
+
+  /* ── RECOMMENDATIONS ── */
+  .recommendations { background: var(--paper); }
+  .rec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1rem; }
+  .rec-card {
+    border: 1px solid var(--mist); padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .rec-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .rec-priority {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; text-transform: uppercase;
+    letter-spacing: 0.18em; color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .rec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+  .rec-text { font-size: 0.87rem; color: #444; line-height: 1.7; }
+  .rec-number {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900;
+    color: rgba(0,0,0,0.04); line-height: 1;
+  }
+
+  /* ── CONCLUSION ── */
+  .conclusion { background: var(--ink); }
+  .conclusion .section-title { color: var(--paper); }
+  .conclusion-body { font-size: 1.05rem; color: rgba(245,240,232,0.7); line-height: 1.9; max-width: 780px; }
+  .conclusion-body p { margin-bottom: 1.2rem; }
+  .score-row {
+    display: flex; gap: 2rem; margin: 2.5rem 0; flex-wrap: wrap;
+  }
+  .score-bubble {
+    display: flex; flex-direction: column; align-items: center;
+    background: #141820; padding: 1.5rem 2rem;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .bubble-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 900; line-height: 1;
+  }
+  .bubble-node { color: #5b9fd4; }
+  .bubble-place { color: #e07a62; }
+  .bubble-design { color: #5ec487; }
+  .bubble-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(245,240,232,0.5); margin-top: 0.4rem; }
+
+  /* ── REFERENCES ── */
+  .references { background: var(--cream); }
+  .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+  .ref-item {
+    font-size: 0.82rem; color: #444; line-height: 1.6;
+    padding: 0.8rem 0; border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+  .ref-item strong { color: var(--ink); display: block; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #07090c; padding: 3rem;
+    text-align: center; border-top: 1px solid rgba(201,150,58,0.15);
+  }
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--paper); margin-bottom: 0.5rem;
+  }
+  .footer-info { font-size: 0.82rem; color: rgba(245,240,232,0.4); }
+
+  .hero-btns {
+    display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--gold); color: var(--ink);
+    padding: 0.75rem 1.6rem; font-size: 0.88rem; font-weight: 700;
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.2s;
+    border: 2px solid var(--gold);
+  }
+  .btn-primary:hover { background: #e0aa42; transform: translateY(-2px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent; color: var(--paper);
+    padding: 0.75rem 1.6rem; font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; letter-spacing: 0.04em;
+    border: 2px solid rgba(245,240,232,0.3);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* ── ANALISIS INDEKS ── */
+  .calc-section { background: var(--paper); }
+  .calc-tabs { display: flex; gap: 0; margin-bottom: 2.5rem; border-bottom: 2px solid var(--mist); }
+  .calc-tab {
+    padding: 0.75rem 1.8rem; cursor: pointer;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; border: none; background: none;
+    color: #888; border-bottom: 3px solid transparent;
+    margin-bottom: -2px; transition: all 0.2s;
+  }
+  .calc-tab.active { color: var(--ink); border-bottom-color: var(--gold); }
+  .calc-tab:hover { color: var(--ink); }
+  .calc-tab-node.active { border-bottom-color: var(--node-color); color: var(--node-color); }
+  .calc-tab-place.active { border-bottom-color: var(--place-color); color: var(--place-color); }
+  .calc-tab-design.active { border-bottom-color: var(--design-color); color: var(--design-color); }
+  .calc-pane { display: none; }
+  .calc-pane.active { display: block; }
+
+  /* Node analysis table */
+  .calc-table {
+    width: 100%; border-collapse: collapse; font-size: 0.87rem;
+    margin-bottom: 1.5rem;
+  }
+  .calc-table thead th {
+    background: var(--ink); color: var(--paper);
+    padding: 0.75rem 1rem; text-align: left;
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+  .calc-table tbody td {
+    padding: 0.8rem 1rem; border-bottom: 1px solid var(--mist);
+    vertical-align: top;
+  }
+  .calc-table tbody tr:last-child td { border-bottom: none; }
+  .calc-table tbody tr:hover td { background: var(--cream); }
+  .score-chip {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 52px; padding: 0.25rem 0.6rem;
+    font-family: 'DM Mono', monospace; font-size: 0.82rem; font-weight: 600;
+    border-radius: 2px;
+  }
+  .chip-high { background: rgba(46,125,79,0.12); color: #2e7d4f; }
+  .chip-mid  { background: rgba(201,150,58,0.15); color: #a07020; }
+  .chip-low  { background: rgba(183,75,46,0.12); color: #b74b2e; }
+  .chip-perfect { background: rgba(42,95,143,0.15); color: #2a5f8f; }
+
+  .formula-box {
+    background: var(--cream); border-left: 4px solid var(--gold);
+    padding: 1.2rem 1.5rem; margin: 1.2rem 0;
+    font-family: 'DM Mono', monospace; font-size: 0.88rem; color: var(--ink);
+    line-height: 2;
+  }
+  .formula-box .f-label { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+  .formula-box .f-line { color: #555; }
+  .formula-box .f-result { color: var(--ink); font-weight: 600; font-size: 1rem; margin-top: 0.3rem; }
+  .formula-box .f-result span { color: var(--gold); font-size: 1.3rem; }
+
+  .sub-indicator-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1rem; margin: 1.2rem 0;
+  }
+  .si-card {
+    border: 1px solid var(--mist); padding: 1.2rem;
+    position: relative; overflow: hidden;
+  }
+  .si-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .si-node::before { background: var(--node-color); }
+  .si-place::before { background: var(--place-color); }
+  .si-design::before { background: var(--design-color); }
+  .si-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .si-raw { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: #777; }
+  .si-score-row { display: flex; align-items: center; gap: 0.8rem; margin-top: 0.8rem; }
+  .si-bar-wrap { flex: 1; background: var(--mist); height: 6px; }
+  .si-bar { height: 6px; }
+  .si-bar-node { background: var(--node-color); }
+  .si-bar-place { background: var(--place-color); }
+  .si-bar-design { background: var(--design-color); }
+  .si-val { font-family: 'DM Mono', monospace; font-size: 0.82rem; font-weight: 600; min-width: 38px; }
+
+  .calc-summary-row {
+    display: flex; gap: 1px; background: var(--mist);
+    border: 1px solid var(--mist); margin-top: 1.5rem;
+  }
+  .cs-cell {
+    flex: 1; background: var(--paper); padding: 1.2rem 1rem;
+    text-align: center;
+  }
+  .cs-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #888; }
+  .cs-val { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; margin: 0.3rem 0; }
+  .cs-cat { font-size: 0.75rem; color: #666; }
+  .cs-node { color: var(--node-color); }
+  .cs-place { color: var(--place-color); }
+  .cs-design { color: var(--design-color); }
+
+  /* Gauge chart */
+  .gauge-row { display: flex; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap; justify-content: center; }
+  .gauge-item { text-align: center; }
+  .gauge-svg { width: 130px; height: 80px; }
+  .gauge-label { font-size: 0.78rem; color: #666; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.3rem; }
+
+  /* Radar chart wrapper */
+  .radar-wrap { display: flex; gap: 3rem; align-items: flex-start; }
+  .radar-svg-wrap { flex: 0 0 280px; }
+  .radar-legend { flex: 1; display: flex; flex-direction: column; gap: 0.8rem; }
+  .rl-item { display: flex; align-items: center; gap: 0.8rem; }
+  .rl-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .rl-name { font-size: 0.85rem; font-weight: 500; }
+  .rl-score { font-family: 'DM Mono', monospace; font-size: 0.82rem; color: #666; margin-left: auto; }
+  .rl-bar-wrap { flex: 1; max-width: 120px; background: var(--mist); height: 4px; }
+  .rl-bar { height: 4px; }
+
+  .note-box {
+    background: #fffbf0; border: 1px solid rgba(201,150,58,0.3);
+    padding: 1rem 1.2rem; font-size: 0.84rem; color: #555;
+    line-height: 1.7; margin-top: 1rem;
+  }
+  .note-box strong { color: var(--ink); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0.8rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 3.5rem 1.5rem; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .hero-grid, .intro-grid, .research-grid,
+    .area-grid, .transport-grid, .walk-grid,
+    .typology-layout, .findings-grid, .rec-grid,
+    .ref-grid { grid-template-columns: 1fr; }
+    .index-cards { grid-template-columns: 1fr; }
+    .score-row { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" style="
+    display:flex;align-items:center;gap:7px;
+    color:rgba(201,150,58,0.85);font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
+    text-decoration:none;padding:4px 0;
+    border-bottom:1px solid transparent;
+    transition:all 0.2s;
+  " onmouseover="this.style.color='#c9963a';this.style.borderColor='rgba(201,150,58,0.5)'"
+     onmouseout="this.style.color='rgba(201,150,58,0.85)';this.style.borderColor='transparent'">
+    ← Portfolio
+  </a>
+  <span class="nav-logo">Ripan Nursalam</span>
+  <ul class="nav-links">
+    <li><a href="#intro">Abstrak</a></li>
+    <li><a href="#index">Indeks</a></li>
+    <li><a href="#calc">Perhitungan</a></li>
+    <li><a href="#area">Wilayah</a></li>
+    <li><a href="#transport">Transportasi</a></li>
+    <li><a href="#typology">Tipologi</a></li>
+    <li><a href="#conclusion">Kesimpulan</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-text">TOD</div>
+  <div class="hero-grid container">
+    <div>
+      <p class="hero-label">Skripsi · Perencanaan Wilayah dan Kota · 2026</p>
+      <h1 class="hero-title">Evaluasi Kinerja Kawasan Terminal <em>Leuwi Panjang</em></h1>
+      <p class="hero-subtitle">Menggunakan pendekatan Extended Node-Place Model yang mengintegrasikan tiga dimensi: kapasitas transportasi (Node), intensitas aktivitas perkotaan (Place), dan kualitas lingkungan fisik (Design).</p>
+      <div class="hero-meta">
+        <div class="meta-row"><strong>Penulis</strong> Ripan Nursalam · 242021035</div>
+        <div class="meta-row"><strong>Program Studi</strong> Perencanaan Wilayah dan Kota – ITENAS Bandung</div>
+        <div class="meta-row"><strong>Pembimbing</strong> Sony Herdiana S.T., M.RegDev</div>
+        <div class="meta-row"><strong>Bandung</strong> 28 Januari 2026</div>
+      </div>
+      <div class="hero-btns">
+        <a class="btn-primary" href="https://drive.google.com/file/d/1zptANnj8pCcmUm5kbT7PapUcVyUbUD_n/view?usp=sharing" target="_blank" rel="noopener">
+          📄 Baca Skripsi Lengkap
+        </a>
+        <a class="btn-secondary" href="#index">
+          📊 Lihat Analisis
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="node-place-diagram">
+        <svg class="diagram-svg" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
+          <!-- Grid -->
+          <line x1="50" y1="290" x2="310" y2="290" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <line x1="50" y1="50" x2="50" y2="290" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <line x1="50" y1="170" x2="310" y2="170" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="180" y1="50" x2="180" y2="290" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+          <!-- Axis Labels -->
+          <text x="170" y="318" text-anchor="middle" fill="rgba(245,240,232,0.4)" font-family="DM Mono,monospace" font-size="10">PLACE (Aktivitas)</text>
+          <text x="20" y="175" text-anchor="middle" fill="rgba(245,240,232,0.4)" font-family="DM Mono,monospace" font-size="10" transform="rotate(-90,20,175)">NODE (Transportasi)</text>
+          <!-- Balance Line -->
+          <line x1="50" y1="290" x2="310" y2="50" stroke="rgba(201,150,58,0.25)" stroke-width="1.5"/>
+          <!-- Quadrant Labels -->
+          <text x="100" y="130" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="9" text-anchor="middle">Unbalanced</text>
+          <text x="100" y="142" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="9" text-anchor="middle">Node</text>
+          <text x="255" y="250" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="9" text-anchor="middle">Unbalanced</text>
+          <text x="255" y="262" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif" font-size="9" text-anchor="middle">Place</text>
+          <text x="255" y="130" fill="rgba(255,255,255,0.18)" font-family="DM Sans,sans-serif" font-size="9" text-anchor="middle">Stressed</text>
+          <text x="100" y="252" fill="rgba(255,255,255,0.18)" font-family="DM Sans,sans-serif" font-size="9" text-anchor="middle">Dependent</text>
+          <text x="178" y="175" fill="rgba(255,255,255,0.18)" font-family="DM Sans,sans-serif" font-size="9" text-anchor="middle">Balanced</text>
+          <!-- Terminal Point: Node=0.78 → Y=290-(0.78*240)=103; Place=0.40 → X=50+(0.40*260)=154 -->
+          <circle cx="154" cy="103" r="14" fill="rgba(201,150,58,0.15)" stroke="rgba(201,150,58,0.6)" stroke-width="1.5"/>
+          <circle cx="154" cy="103" r="7" fill="#c9963a"/>
+          <!-- Dotted lines to axes -->
+          <line x1="154" y1="103" x2="154" y2="290" stroke="rgba(201,150,58,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="154" y1="103" x2="50" y2="103" stroke="rgba(201,150,58,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+          <!-- Axis value labels -->
+          <text x="154" y="305" text-anchor="middle" fill="rgba(201,150,58,0.8)" font-family="DM Mono,monospace" font-size="10">0.40</text>
+          <text x="38" y="107" text-anchor="end" fill="rgba(201,150,58,0.8)" font-family="DM Mono,monospace" font-size="10">0.78</text>
+          <!-- Label -->
+          <text x="175" y="95" fill="#c9963a" font-family="DM Sans,sans-serif" font-size="10" font-weight="600">Leuwi Panjang</text>
+          <!-- 0/1 axis markers -->
+          <text x="50" y="298" fill="rgba(255,255,255,0.3)" font-family="DM Mono,monospace" font-size="9" text-anchor="middle">0</text>
+          <text x="310" y="298" fill="rgba(255,255,255,0.3)" font-family="DM Mono,monospace" font-size="9" text-anchor="middle">1</text>
+          <text x="42" y="53" fill="rgba(255,255,255,0.3)" font-family="DM Mono,monospace" font-size="9" text-anchor="end">1</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABSTRAK -->
+<section class="intro" id="intro">
+  <div class="container">
+    <p class="section-label reveal">Abstrak Penelitian</p>
+    <h2 class="section-title reveal">Tentang Penelitian Ini</h2>
+    <div class="section-divider reveal"></div>
+    <div class="intro-grid">
+      <div class="intro-text reveal">
+        <p>Terminal Leuwi Panjang memegang peranan vital sebagai gerbang transportasi regional di Kota Bandung, namun belum berkembang menjadi kawasan yang terintegrasi secara optimal. Penelitian ini bertujuan mengevaluasi kinerja dan keseimbangan kawasan tersebut menggunakan pendekatan <em>Extended Node-Place Model</em>.</p>
+        <p>Penelitian mengkaji tiga dimensi pembentuk kawasan transit: kapasitas transportasi (<strong>Node</strong>), intensitas aktivitas perkotaan (<strong>Place</strong>), dan kualitas lingkungan fisik (<strong>Design</strong>). Metode campuran digunakan melalui perhitungan indeks kuantitatif, analisis spasial, dan audit walkability lapangan.</p>
+        <p>Hasil penelitian menempatkan kawasan pada klasifikasi <strong>Unbalanced Node</strong> (Simpul Tidak Seimbang), di mana kinerja transportasi sangat tinggi (Indeks Node 0,78) namun tidak diimbangi oleh perkembangan kawasan sekitar (Indeks Place 0,40). Terminal berfungsi efektif sebagai simpul transportasi, namun belum berhasil menjadi pusat aktivitas perkotaan yang hidup.</p>
+        <div class="highlight-box">
+          "Terminal Leuwi Panjang berdiri sebagai gerbang yang megah, namun jalan-jalan di sekitarnya belum menjadi tujuan. Infrastruktur telah memimpin, kini giliran kawasan yang harus menyusul."
+        </div>
+      </div>
+      <div class="side-stats reveal">
+        <div class="stat-card">
+          <div class="stat-number">197<span class="stat-unit">ha</span></div>
+          <div class="stat-label">Luas Wilayah Studi (Radius 800m)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">54.596<span class="stat-unit"> jiwa</span></div>
+          <div class="stat-label">Estimasi Penduduk dalam Catchment Area</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">40<span class="stat-unit">+</span></div>
+          <div class="stat-label">Trayek Unik yang Dilayani Terminal</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">10.240</div>
+          <div class="stat-label">Total Unit Bangunan Teridentifikasi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDEX CARDS -->
+<section class="index-section" id="index">
+  <div class="container">
+    <p class="section-label reveal">Hasil Analisis</p>
+    <h2 class="section-title reveal">Tiga Dimensi Evaluasi</h2>
+    <div class="section-divider reveal"></div>
+    <div class="index-cards reveal">
+      <!-- NODE -->
+      <div class="index-card card-node">
+        <span class="card-icon">🚌</span>
+        <p class="card-dim">Dimensi I</p>
+        <h3 class="card-heading">Node — Transportasi</h3>
+        <div class="card-score">0.78</div>
+        <p class="card-category">Kategori: Tinggi (High Performance)</p>
+        <p class="card-desc">Terminal berfungsi prima sebagai simpul transportasi regional dengan konektivitas sangat luas dan frekuensi layanan yang sangat tinggi. Merupakan kekuatan utama kawasan.</p>
+        <div class="card-indicators">
+          <div class="ind-row">
+            <span class="ind-name">Keragaman Moda</span>
+            <div class="ind-bar-wrap"><div class="ind-bar" style="width:50%"></div></div>
+            <span class="ind-val">0.50</span>
+          </div>
+          <div class="ind-row">
+            <span class="ind-name">Konektivitas</span>
+            <div class="ind-bar-wrap"><div class="ind-bar" style="width:100%"></div></div>
+            <span class="ind-val">1.00</span>
+          </div>
+          <div class="ind-row">
+            <span class="ind-name">Intensitas Layanan</span>
+            <div class="ind-bar-wrap"><div class="ind-bar" style="width:100%"></div></div>
+            <span class="ind-val">1.00</span>
+          </div>
+          <div class="ind-row">
+            <span class="ind-name">Integrasi Antarmoda</span>
+            <div class="ind-bar-wrap"><div class="ind-bar" style="width:63%"></div></div>
+            <span class="ind-val">0.63</span>
+          </div>
+        </div>
+      </div>
+      <!-- PLACE -->
+      <div class="index-card card-place">
+        <span class="card-icon">🏙️</span>
+        <p class="card-dim">Dimensi II</p>
+        <h3 class="card-heading">Place — Aktivitas Kawasan</h3>
+        <div class="card-score">0.40</div>
+        <p class="card-category">Kategori: Sedang-Rendah</p>
+        <p class="card-desc">Kawasan belum mampu memanfaatkan potensi aksesibilitas terminal. Dominasi hunian horizontal rendah dan minimnya keragaman aktivitas membatasi vitalitas kawasan.</p>
+        <div class="card-indicators">
+          <div class="ind-row">
+            <span class="ind-name">Kepadatan Hunian</span>
+            <div class="ind-bar-wrap"><div class="ind-bar" style="width:21.8%"></div></div>
+            <span class="ind-val">0.218</span>
+          </div>
+          <div class="ind-row">
+            <span class="ind-name">Diversitas Lahan</span>
+            <div class="ind-bar-wrap"><div class="ind-bar" style="width:59%"></div></div>
+            <span class="ind-val">0.59</span>
+          </div>
+          <div class="ind-row">
+            <span class="ind-name">Intensitas Fisik</span>
+            <div class="ind-bar-wrap"><div class="ind-bar" style="width:40.3%"></div></div>
+            <span class="ind-val">0.403</span>
+          </div>
+        </div>
+      </div>
+      <!-- DESIGN -->
+      <div class="index-card card-design">
+        <span class="card-icon">🚶</span>
+        <p class="card-dim">Dimensi III</p>
+        <h3 class="card-heading">Design — Walkability</h3>
+        <div class="card-score">0.62</div>
+        <p class="card-category">Kategori: Cukup / Hambatan Sedang</p>
+        <p class="card-desc">Infrastruktur pejalan kaki tersedia namun belum optimal. Konektivitas baik namun kualitas permukaan sangat buruk (hanya 16,7% trotoar layak) dan minim fasilitas disabilitas.</p>
+        <div class="card-indicators">
+          <div class="ind-row">
+            <span class="ind-name">Pedshed Ratio</span>
+            <div class="ind-bar-wrap"><div class="ind-bar" style="width:58%"></div></div>
+            <span class="ind-val">0.58</span>
+          </div>
+          <div class="ind-row">
+            <span class="ind-name">Walkability Score</span>
+            <div class="ind-bar-wrap"><div class="ind-bar" style="width:64%"></div></div>
+            <span class="ind-val">0.64</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALISIS INDEKS -->
+<section class="calc-section" id="calc">
+  <div class="container">
+    <p class="section-label reveal">Analisis Kuantitatif</p>
+    <h2 class="section-title reveal">Perhitungan Indeks Node, Place &amp; Design</h2>
+    <div class="section-divider reveal"></div>
+
+    <!-- TABS -->
+    <div class="calc-tabs reveal">
+      <button class="calc-tab calc-tab-node active" onclick="switchTab('node')">📊 Node (0.78)</button>
+      <button class="calc-tab calc-tab-place" onclick="switchTab('place')">🏙 Place (0.40)</button>
+      <button class="calc-tab calc-tab-design" onclick="switchTab('design')">🚶 Design (0.62)</button>
+      <button class="calc-tab" onclick="switchTab('composite')">⚖ Komposit</button>
+    </div>
+
+    <!-- ── NODE PANE ── -->
+    <div class="calc-pane active" id="pane-node">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+        <div>
+          <h3 class="subsection-title" style="color:var(--node-color);">Dimensi Node — Suplai Transportasi</h3>
+          <p style="font-size:0.87rem;color:#555;margin-bottom:1.2rem;line-height:1.7;">Dimensi Node mengukur kapasitas terminal sebagai simpul dalam jaringan transportasi regional. Terdiri dari 4 indikator dengan bobot merata (equal weight 25%). Normalisasi menggunakan Min-Max ke skala 0–1.</p>
+
+          <table class="calc-table">
+            <thead><tr><th>Indikator</th><th>Data Eksisting</th><th>Skor Mentah</th><th>Normalisasi</th><th>Kategori</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Keragaman Moda</strong><br><span style="font-size:0.78rem;color:#888;">Modal Diversity</span></td>
+                <td>BRT ✓ (×2), Bus Reguler ✓ (×1), Angkutan Mikro ✓ (×1)<br><span style="font-size:0.78rem;color:#888;">KRL ✗ · LRT/MRT ✗</span></td>
+                <td style="font-family:'DM Mono',monospace;">4 / 8 poin</td>
+                <td><span class="score-chip chip-mid">0,50</span></td>
+                <td>Sedang</td>
+              </tr>
+              <tr>
+                <td><strong>Konektivitas Jaringan</strong><br><span style="font-size:0.78rem;color:#888;">Network Connectivity</span></td>
+                <td>Lokal: 9 trayek<br>Aglomerasi: 10 trayek<br>AKDP: &gt;12 trayek<br>AKAP: &gt;12 trayek<br><span style="font-size:0.78rem;color:#888;">Total &gt;40 trayek unik</span></td>
+                <td style="font-family:'DM Mono',monospace;">Skor 5 / 5<br><span style="font-size:0.75rem;color:#888;">(&gt;20 trayek)</span></td>
+                <td><span class="score-chip chip-perfect">1,00</span></td>
+                <td>Sangat Tinggi</td>
+              </tr>
+              <tr>
+                <td><strong>Intensitas Layanan</strong><br><span style="font-size:0.78rem;color:#888;">Service Intensity</span></td>
+                <td>Bus Kota &amp; TMP: 18–24 kend/jam<br>Bus Jarak Jauh: 8–15 kend/jam<br>Angkutan Mikro: &gt;60 kend/jam<br><span style="font-size:0.78rem;color:#888;">Total agregat &gt;100 kend/jam</span></td>
+                <td style="font-family:'DM Mono',monospace;">Skor 5 / 5<br><span style="font-size:0.75rem;color:#888;">(&gt;30 kend/jam)</span></td>
+                <td><span class="score-chip chip-perfect">1,00</span></td>
+                <td>Sangat Tinggi</td>
+              </tr>
+              <tr>
+                <td><strong>Integrasi Antarmoda</strong><br><span style="font-size:0.78rem;color:#888;">Intermodal Integration</span></td>
+                <td>
+                  Fisik: TMP↔TMB ≤0m, Angkot ≤200m (Halte Soetta)<br>
+                  Tiket: 4 sistem terpisah (TMP, TMB, DAMRI, tunai)<br>
+                  Informasi: hanya TMP real-time
+                </td>
+                <td style="font-family:'DM Mono',monospace;">20 / 32 poin<br><span style="font-size:0.75rem;color:#888;">(Fisik:11, Tiket:5, Info:4)</span></td>
+                <td><span class="score-chip chip-mid">0,63</span></td>
+                <td>Sedang</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="formula-box">
+            <div class="f-label">Rumus Indeks Node (Equal Weight 25% tiap indikator)</div>
+            <div class="f-line">I<sub>N</sub> = (I<sub>moda</sub> + I<sub>konektivitas</sub> + I<sub>intensitas</sub> + I<sub>integrasi</sub>) / 4</div>
+            <div class="f-line">I<sub>N</sub> = (0,50 + 1,00 + 1,00 + 0,63) / 4</div>
+            <div class="f-line">I<sub>N</sub> = 3,13 / 4</div>
+            <div class="f-result">I<sub>N</sub> = <span>0,783</span> → Kategori: <strong>Tinggi</strong></div>
+          </div>
+        </div>
+        <div>
+          <!-- Gauge-style breakdown -->
+          <h4 style="font-size:0.9rem;font-weight:600;margin-bottom:1rem;color:var(--node-color);">Visualisasi Kontribusi Indikator</h4>
+          <div class="sub-indicator-grid">
+            <div class="si-card si-node">
+              <div class="si-title">Keragaman Moda</div>
+              <div class="si-raw">4 dari 8 poin (road-based only)</div>
+              <div class="si-score-row">
+                <div class="si-bar-wrap"><div class="si-bar si-bar-node" style="width:50%"></div></div>
+                <span class="si-val" style="color:var(--node-color);">0,50</span>
+              </div>
+            </div>
+            <div class="si-card si-node">
+              <div class="si-title">Konektivitas Jaringan</div>
+              <div class="si-raw">&gt;40 trayek unik (lokal–nasional)</div>
+              <div class="si-score-row">
+                <div class="si-bar-wrap"><div class="si-bar si-bar-node" style="width:100%"></div></div>
+                <span class="si-val" style="color:var(--node-color);">1,00</span>
+              </div>
+            </div>
+            <div class="si-card si-node">
+              <div class="si-title">Intensitas Layanan</div>
+              <div class="si-raw">&gt;100 kendaraan/jam jam sibuk</div>
+              <div class="si-score-row">
+                <div class="si-bar-wrap"><div class="si-bar si-bar-node" style="width:100%"></div></div>
+                <span class="si-val" style="color:var(--node-color);">1,00</span>
+              </div>
+            </div>
+            <div class="si-card si-node">
+              <div class="si-title">Integrasi Antarmoda</div>
+              <div class="si-raw">Fisik baik, tiket &amp; info terfragmen</div>
+              <div class="si-score-row">
+                <div class="si-bar-wrap"><div class="si-bar si-bar-node" style="width:63%"></div></div>
+                <span class="si-val" style="color:var(--node-color);">0,63</span>
+              </div>
+            </div>
+          </div>
+          <!-- SVG Spider for Node -->
+          <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin-top:1rem;">
+            <!-- Axis labels -->
+            <text x="140" y="18" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Keragaman Moda</text>
+            <text x="268" y="118" text-anchor="end" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Intensitas</text>
+            <text x="140" y="215" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Konektivitas</text>
+            <text x="12" y="118" text-anchor="start" font-family="DM Sans,sans-serif" font-size="10" fill="#555">Integrasi</text>
+            <!-- Grid circles: 0.25, 0.5, 0.75, 1.0 (r=25,50,75,100 from center 140,110) -->
+            <polygon points="140,85 165,110 140,135 115,110" fill="none" stroke="var(--mist)" stroke-width="1"/>
+            <polygon points="140,60 190,110 140,160 90,110" fill="none" stroke="var(--mist)" stroke-width="1"/>
+            <polygon points="140,35 215,110 140,185 65,110" fill="none" stroke="var(--mist)" stroke-width="1"/>
+            <polygon points="140,10 240,110 140,210 40,110" fill="none" stroke="var(--mist)" stroke-width="1"/>
+            <!-- Axes -->
+            <line x1="140" y1="110" x2="140" y2="10" stroke="var(--mist)" stroke-width="1"/>
+            <line x1="140" y1="110" x2="240" y2="110" stroke="var(--mist)" stroke-width="1"/>
+            <line x1="140" y1="110" x2="140" y2="210" stroke="var(--mist)" stroke-width="1"/>
+            <line x1="140" y1="110" x2="40" y2="110" stroke="var(--mist)" stroke-width="1"/>
+            <!-- Data polygon: Moda=0.5→top offset 50; Intensitas=1.0→right offset 100; Konektivitas=1.0→bottom offset 100; Integrasi=0.63→left offset 63 -->
+            <!-- top: 140, 110-50=60; right: 140+100=240, 110; bottom: 140, 110+100=210; left: 140-63=77, 110 -->
+            <polygon points="140,60 240,110 140,210 77,110" fill="rgba(42,95,143,0.18)" stroke="var(--node-color)" stroke-width="2"/>
+            <circle cx="140" cy="60" r="4" fill="var(--node-color)"/>
+            <circle cx="240" cy="110" r="4" fill="var(--node-color)"/>
+            <circle cx="140" cy="210" r="4" fill="var(--node-color)"/>
+            <circle cx="77" cy="110" r="4" fill="var(--node-color)"/>
+            <!-- Center -->
+            <circle cx="140" cy="110" r="3" fill="var(--ink)"/>
+          </svg>
+          <div class="note-box">
+            <strong>Interpretasi:</strong> Dua indikator kuantitatif (konektivitas &amp; intensitas) mencapai nilai sempurna. Kelemahan terletak pada aspek kualitatif — keragaman moda terbatas pada sistem jalan raya, dan sistem pembayaran antarmoda masih terkotak-kotak.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PLACE PANE ── -->
+    <div class="calc-pane" id="pane-place">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+        <div>
+          <h3 class="subsection-title" style="color:var(--place-color);">Dimensi Place — Intensitas Aktivitas Kawasan</h3>
+          <p style="font-size:0.87rem;color:#555;margin-bottom:1.2rem;line-height:1.7;">Dimensi Place menilai daya tarik kawasan sebagai pusat aktivitas ekonomi dan sosial. Terdiri dari 3 indikator dengan bobot merata (33,3%). Semua dinormalisasi Min-Max ke skala 0–1.</p>
+
+          <table class="calc-table">
+            <thead><tr><th>Indikator</th><th>Data Eksisting</th><th>Perhitungan</th><th>Indeks</th><th>Kategori</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Kepadatan Hunian</strong><br><span style="font-size:0.78rem;color:#888;">Residential Density</span></td>
+                <td>
+                  Total unit hunian: 8.588<br>
+                  Luas kawasan: 197,53 Ha<br>
+                  <span style="font-size:0.78rem;color:#888;">Kepadatan = 43,5 unit/Ha</span>
+                </td>
+                <td style="font-family:'DM Mono',monospace;font-size:0.82rem;">
+                  I = (43,5 – 0) / (200 – 0)<br>
+                  = 43,5 / 200
+                </td>
+                <td><span class="score-chip chip-low">0,218</span></td>
+                <td>Rendah</td>
+              </tr>
+              <tr>
+                <td><strong>Diversitas Guna Lahan</strong><br><span style="font-size:0.78rem;color:#888;">Entropy Index (Shannon H)</span></td>
+                <td>
+                  Hunian: 56,0% luas lantai<br>
+                  Usaha/Komersial: 29,1%<br>
+                  Campuran: 7,7%<br>
+                  Sosial-Budaya: 3,4%<br>
+                  Sarpras: 2,5%, Keagamaan: 1,3%
+                </td>
+                <td style="font-family:'DM Mono',monospace;font-size:0.82rem;">
+                  H = –Σ(Pi·ln Pi) / ln(n)<br>
+                  Σ(Pi·ln Pi) = –1,147<br>
+                  ln(7) = 1,946<br>
+                  H = 1,147 / 1,946
+                </td>
+                <td><span class="score-chip chip-mid">0,590</span></td>
+                <td>Sedang</td>
+              </tr>
+              <tr>
+                <td><strong>Intensitas Fisik Bangunan</strong><br><span style="font-size:0.78rem;color:#888;">KDB &amp; KLB</span></td>
+                <td>
+                  Luas tapak bangunan: 1.252.579,75 m²<br>
+                  Luas lantai total: 1.703.368,28 m²<br>
+                  Luas lahan: 1.975.271,84 m²
+                </td>
+                <td style="font-family:'DM Mono',monospace;font-size:0.82rem;">
+                  KDB = 1.252.580 / 1.975.272 = 63,41%<br>
+                  I<sub>KDB</sub> = 0,634<br>
+                  KLB = 1.703.368 / 1.975.272 = 0,86<br>
+                  I<sub>KLB</sub> = 0,86/5 = 0,172<br>
+                  I<sub>fisik</sub> = (0,634+0,172)/2
+                </td>
+                <td><span class="score-chip chip-mid">0,403</span></td>
+                <td>Sedang-Rendah</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="formula-box">
+            <div class="f-label">Rumus Indeks Place (Equal Weight 33,3%)</div>
+            <div class="f-line">I<sub>P</sub> = (I<sub>kepadatan</sub> + I<sub>diversitas</sub> + I<sub>fisik</sub>) / 3</div>
+            <div class="f-line">I<sub>P</sub> = (0,218 + 0,590 + 0,403) / 3</div>
+            <div class="f-line">I<sub>P</sub> = 1,211 / 3</div>
+            <div class="f-result">I<sub>P</sub> = <span>0,404</span> → Kategori: <strong>Sedang-Rendah</strong></div>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:0.9rem;font-weight:600;margin-bottom:1rem;color:var(--place-color);">Visualisasi Kontribusi Indikator</h4>
+          <div class="sub-indicator-grid">
+            <div class="si-card si-place">
+              <div class="si-title">Kepadatan Hunian</div>
+              <div class="si-raw">43,5 unit/Ha dari target 200 unit/Ha</div>
+              <div class="si-score-row">
+                <div class="si-bar-wrap"><div class="si-bar si-bar-place" style="width:21.8%"></div></div>
+                <span class="si-val" style="color:var(--place-color);">0,218</span>
+              </div>
+            </div>
+            <div class="si-card si-place">
+              <div class="si-title">Diversitas Guna Lahan</div>
+              <div class="si-raw">Entropi Shannon H = 0,59 (7 fungsi, bifungsi dominan)</div>
+              <div class="si-score-row">
+                <div class="si-bar-wrap"><div class="si-bar si-bar-place" style="width:59%"></div></div>
+                <span class="si-val" style="color:var(--place-color);">0,590</span>
+              </div>
+            </div>
+            <div class="si-card si-place" style="grid-column:1/-1;">
+              <div class="si-title">Intensitas Fisik (KDB &amp; KLB)</div>
+              <div class="si-raw">KDB 63,41% (I=0,634) vs KLB 0,86 (I=0,172) → Padat horizontal, kosong vertikal</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:0.8rem;">
+                <div>
+                  <div style="font-size:0.75rem;color:#888;margin-bottom:0.3rem;">KDB (Horizontal)</div>
+                  <div class="si-score-row">
+                    <div class="si-bar-wrap"><div class="si-bar si-bar-place" style="width:63.4%"></div></div>
+                    <span class="si-val" style="color:var(--place-color);">0,634</span>
+                  </div>
+                </div>
+                <div>
+                  <div style="font-size:0.75rem;color:#888;margin-bottom:0.3rem;">KLB (Vertikal)</div>
+                  <div class="si-score-row">
+                    <div class="si-bar-wrap"><div class="si-bar si-bar-place" style="width:17.2%"></div></div>
+                    <span class="si-val" style="color:var(--rust);">0,172</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Distribusi Fungsi Bangunan -->
+          <h4 style="font-size:0.88rem;font-weight:600;margin:1.2rem 0 0.7rem;color:#444;">Distribusi Luas Lantai per Fungsi (Dasar Entropi)</h4>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.82rem;">
+              <span style="min-width:100px;color:#444;">Hunian</span>
+              <div style="flex:1;background:var(--mist);height:10px;"><div style="width:56%;height:10px;background:var(--place-color);opacity:0.7;"></div></div>
+              <span style="font-family:'DM Mono',monospace;min-width:60px;font-size:0.78rem;color:#555;">56,0%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.82rem;">
+              <span style="min-width:100px;color:#444;">Usaha/Komersial</span>
+              <div style="flex:1;background:var(--mist);height:10px;"><div style="width:29.1%;height:10px;background:var(--place-color);opacity:0.5;"></div></div>
+              <span style="font-family:'DM Mono',monospace;min-width:60px;font-size:0.78rem;color:#555;">29,1%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.82rem;">
+              <span style="min-width:100px;color:#444;">Campuran</span>
+              <div style="flex:1;background:var(--mist);height:10px;"><div style="width:7.7%;height:10px;background:var(--gold);opacity:0.6;"></div></div>
+              <span style="font-family:'DM Mono',monospace;min-width:60px;font-size:0.78rem;color:#555;">7,7%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.82rem;">
+              <span style="min-width:100px;color:#444;">Sosial-Budaya</span>
+              <div style="flex:1;background:var(--mist);height:10px;"><div style="width:3.4%;height:10px;background:#888;"></div></div>
+              <span style="font-family:'DM Mono',monospace;min-width:60px;font-size:0.78rem;color:#999;">3,4%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.82rem;">
+              <span style="min-width:100px;color:#444;">Sarpras</span>
+              <div style="flex:1;background:var(--mist);height:10px;"><div style="width:2.5%;height:10px;background:#aaa;"></div></div>
+              <span style="font-family:'DM Mono',monospace;min-width:60px;font-size:0.78rem;color:#999;">2,5%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.82rem;">
+              <span style="min-width:100px;color:#444;">Keagamaan</span>
+              <div style="flex:1;background:var(--mist);height:10px;"><div style="width:1.3%;height:10px;background:#bbb;"></div></div>
+              <span style="font-family:'DM Mono',monospace;min-width:60px;font-size:0.78rem;color:#999;">1,3%</span>
+            </div>
+          </div>
+          <div class="note-box" style="margin-top:1rem;">
+            <strong>Temuan Kritis:</strong> Dua fungsi dominan (Hunian + Usaha) menguasai 85,1% total luas lantai. Fungsi sosial-budaya hanya 3,4% — jauh di bawah standar kota sehat 8–10%. KLB rata-rata 0,86 berarti kawasan hanya memanfaatkan 17,2% dari kapasitas vertikal ideal (target KLB = 5,0).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DESIGN PANE ── -->
+    <div class="calc-pane" id="pane-design">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+        <div>
+          <h3 class="subsection-title" style="color:var(--design-color);">Dimensi Design — Kualitas Lingkungan Fisik</h3>
+          <p style="font-size:0.87rem;color:#555;margin-bottom:1.2rem;line-height:1.7;">Dimensi Design berfungsi sebagai variabel intervening — jembatan antara Node dan Place. Terdiri dari 2 indikator dengan bobot merata (50%). Menentukan apakah potensi integrasi fisik dapat terwujud.</p>
+
+          <table class="calc-table">
+            <thead><tr><th>Indikator</th><th>Data Eksisting</th><th>Perhitungan</th><th>Indeks</th><th>Kategori</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Permeabilitas Jaringan</strong><br><span style="font-size:0.78rem;color:#888;">Pedshed Ratio</span></td>
+                <td>
+                  Radius analisis: 800 m<br>
+                  Luas buffer (Euclidean): 197,53 Ha<br>
+                  Luas service area (jaringan jalan): ±115 Ha<br>
+                  <span style="font-size:0.78rem;color:#888;">42% area terisolasi (±82,53 Ha)</span>
+                </td>
+                <td style="font-family:'DM Mono',monospace;font-size:0.82rem;">
+                  Pedshed = 115 / 197,53<br>
+                  = 0,582<br>
+                  <br>
+                  I = Pedshed (langsung)
+                </td>
+                <td><span class="score-chip chip-mid">0,58</span></td>
+                <td>Buruk<br><span style="font-size:0.75rem;color:#888;">(0,50–0,59)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Kualitas Walkability</strong><br><span style="font-size:0.78rem;color:#888;">Walkability Audit Score</span></td>
+                <td>
+                  48 segmen diaudit<br>
+                  Konektivitas: 45/48 = 93,8% layak<br>
+                  Peneduh: 39/48 = 81,3% layak<br>
+                  Lampu PJU: 39/48 = 81,3% layak<br>
+                  Fasilitas disabilitas: 22/48 = 45,8%<br>
+                  <span style="color:var(--rust);font-size:0.8rem;font-weight:600;">Permukaan layak: 8/48 = 16,7%</span>
+                </td>
+                <td style="font-family:'DM Mono',monospace;font-size:0.82rem;">
+                  I = Σ indeks segmen / 48<br>
+                  Distribusi kelas:<br>
+                  Sangat Baik(1,0): 4 segmen<br>
+                  Baik (0,8): 13 segmen<br>
+                  Cukup (0,6): 21 segmen<br>
+                  Buruk (0,4): 9 segmen<br>
+                  Sangat Buruk (0,2): 1 segmen
+                </td>
+                <td><span class="score-chip chip-mid">0,64</span></td>
+                <td>Cukup</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="formula-box">
+            <div class="f-label">Rumus Indeks Design (Equal Weight 50%)</div>
+            <div class="f-line">I<sub>D</sub> = (I<sub>pedshed</sub> + I<sub>walkability</sub>) / 2</div>
+            <div class="f-line">I<sub>D</sub> = (0,58 + 0,64) / 2</div>
+            <div class="f-line">I<sub>D</sub> = 1,22 / 2</div>
+            <div class="f-result">I<sub>D</sub> = <span>0,62</span> → Kategori: <strong>Cukup (Hambatan Sedang)</strong></div>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:0.9rem;font-weight:600;margin-bottom:1rem;color:var(--design-color);">Distribusi Walkability per Koridor</h4>
+          <!-- Walkability corridor bars -->
+          <div style="display:flex;flex-direction:column;gap:0.7rem;margin-bottom:1.2rem;">
+            <div style="font-size:0.78rem;color:#888;margin-bottom:0.2rem;display:flex;justify-content:space-between;"><span>Koridor Jalan</span><span>Indeks</span></div>
+            <div style="display:flex;align-items:center;gap:0.7rem;">
+              <span style="font-size:0.82rem;min-width:130px;">Jl. Leuwi Panjang</span>
+              <div style="flex:1;background:var(--mist);height:12px;"><div style="width:75%;height:12px;background:var(--design-color);"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--design-color);">0,75</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.7rem;">
+              <span style="font-size:0.82rem;min-width:130px;">Jl. Cibaduyut</span>
+              <div style="flex:1;background:var(--mist);height:12px;"><div style="width:70%;height:12px;background:var(--design-color);"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--design-color);">0,70</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.7rem;">
+              <span style="font-size:0.82rem;min-width:130px;">Jl. Kopo</span>
+              <div style="flex:1;background:var(--mist);height:12px;"><div style="width:69%;height:12px;background:var(--gold);"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--gold);">0,69</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.7rem;">
+              <span style="font-size:0.82rem;min-width:130px;">Jl. Cibaduyut Dalam</span>
+              <div style="flex:1;background:var(--mist);height:12px;"><div style="width:60%;height:12px;background:var(--gold);"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--gold);">0,60</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.7rem;">
+              <span style="font-size:0.82rem;min-width:130px;">Jl. Caringin</span>
+              <div style="flex:1;background:var(--mist);height:12px;"><div style="width:60%;height:12px;background:var(--gold);"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--gold);">0,60</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.7rem;">
+              <span style="font-size:0.82rem;min-width:130px;">Jl. Soekarno Hatta</span>
+              <div style="flex:1;background:var(--mist);height:12px;"><div style="width:54%;height:12px;background:var(--rust);"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--rust);">0,54 ⚠</span>
+            </div>
+          </div>
+
+          <!-- 5 indicators breakdown -->
+          <h4 style="font-size:0.88rem;font-weight:600;margin-bottom:0.8rem;color:#444;">5 Indikator Fisik (48 Segmen)</h4>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.82rem;">
+              <span style="min-width:140px;">Konektivitas Jaringan</span>
+              <div style="flex:1;background:var(--mist);height:8px;"><div style="width:93.8%;height:8px;background:var(--design-color);"></div></div>
+              <span style="font-family:'DM Mono',monospace;min-width:42px;color:var(--design-color);">93,8%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.82rem;">
+              <span style="min-width:140px;">Peneduh</span>
+              <div style="flex:1;background:var(--mist);height:8px;"><div style="width:81.3%;height:8px;background:var(--design-color);"></div></div>
+              <span style="font-family:'DM Mono',monospace;min-width:42px;color:var(--design-color);">81,3%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.82rem;">
+              <span style="min-width:140px;">Lampu Penerangan</span>
+              <div style="flex:1;background:var(--mist);height:8px;"><div style="width:81.3%;height:8px;background:var(--design-color);"></div></div>
+              <span style="font-family:'DM Mono',monospace;min-width:42px;color:var(--design-color);">81,3%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.82rem;">
+              <span style="min-width:140px;">Fasilitas Disabilitas</span>
+              <div style="flex:1;background:var(--mist);height:8px;"><div style="width:45.8%;height:8px;background:var(--gold);"></div></div>
+              <span style="font-family:'DM Mono',monospace;min-width:42px;color:var(--gold);">45,8%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.82rem;">
+              <span style="min-width:140px;font-weight:600;color:var(--rust);">Permukaan Layak ⚠</span>
+              <div style="flex:1;background:var(--mist);height:8px;"><div style="width:16.7%;height:8px;background:var(--rust);"></div></div>
+              <span style="font-family:'DM Mono',monospace;min-width:42px;color:var(--rust);">16,7%</span>
+            </div>
+          </div>
+
+          <!-- Walkability distribution -->
+          <h4 style="font-size:0.88rem;font-weight:600;margin:1.2rem 0 0.7rem;color:#444;">Distribusi Kelas Walkability (48 segmen)</h4>
+          <div style="display:flex;gap:0.5rem;align-items:flex-end;height:70px;margin-bottom:0.5rem;">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:0.2rem;">
+              <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:#555;">4</span>
+              <div style="width:100%;background:var(--design-color);height:calc(4/48*100%);" title="Sangat Baik: 4 segmen"></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:0.2rem;">
+              <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:#555;">13</span>
+              <div style="width:100%;background:#6baf8a;height:calc(13/48*100%);" title="Baik: 13 segmen"></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:0.2rem;">
+              <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:#555;">21</span>
+              <div style="width:100%;background:var(--gold);height:calc(21/48*100%);" title="Cukup: 21 segmen"></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:0.2rem;">
+              <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:#555;">9</span>
+              <div style="width:100%;background:#c97040;height:calc(9/48*100%);" title="Buruk: 9 segmen"></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:0.2rem;">
+              <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:#555;">1</span>
+              <div style="width:100%;background:var(--rust);height:calc(1/48*100%);" title="Sangat Buruk: 1 segmen"></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:0.5rem;font-size:0.68rem;color:#888;text-align:center;">
+            <span style="flex:1;">Sangat<br>Baik</span><span style="flex:1;">Baik</span><span style="flex:1;">Cukup</span><span style="flex:1;">Buruk</span><span style="flex:1;">Sangat<br>Buruk</span>
+          </div>
+          <div class="note-box" style="margin-top:1rem;">
+            <strong>Paradoks Infrastruktur:</strong> Konektivitas sangat baik (93,8%) namun detail mikro gagal. Permukaan trotoar layak hanya 16,7% mencerminkan paradoks di mana jaringan jalan tersedia tapi kondisinya tidak mengundang pejalan kaki.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COMPOSITE PANE ── -->
+    <div class="calc-pane" id="pane-composite">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+        <div>
+          <h3 class="subsection-title">Rekapitulasi Komposit — Extended Node-Place</h3>
+          <p style="font-size:0.87rem;color:#555;margin-bottom:1.5rem;line-height:1.7;">Penggabungan ketiga indeks menggunakan bobot merata per dimensi. Koordinat (I<sub>N</sub>, I<sub>P</sub>) di-plot pada Matriks Node-Place untuk menentukan tipologi kawasan.</p>
+
+          <table class="calc-table">
+            <thead><tr><th>Dimensi</th><th>Komponen Indikator</th><th>Skor</th><th>Bobot</th><th>Kontribusi</th><th>Kategori</th></tr></thead>
+            <tbody>
+              <tr style="border-left:3px solid var(--node-color);">
+                <td rowspan="4" style="background:rgba(42,95,143,0.04);font-weight:600;color:var(--node-color);vertical-align:top;padding-top:1rem;">NODE<br><span style="font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--ink);">0,783</span></td>
+                <td>Keragaman Moda</td>
+                <td><span class="score-chip chip-mid">0,50</span></td>
+                <td>25%</td>
+                <td style="font-family:'DM Mono',monospace;">0,125</td>
+                <td>Sedang</td>
+              </tr>
+              <tr style="border-left:3px solid var(--node-color);">
+                <td>Konektivitas Jaringan</td>
+                <td><span class="score-chip chip-perfect">1,00</span></td>
+                <td>25%</td>
+                <td style="font-family:'DM Mono',monospace;">0,250</td>
+                <td>Sangat Tinggi</td>
+              </tr>
+              <tr style="border-left:3px solid var(--node-color);">
+                <td>Intensitas Layanan</td>
+                <td><span class="score-chip chip-perfect">1,00</span></td>
+                <td>25%</td>
+                <td style="font-family:'DM Mono',monospace;">0,250</td>
+                <td>Sangat Tinggi</td>
+              </tr>
+              <tr style="border-left:3px solid var(--node-color);">
+                <td>Integrasi Antarmoda</td>
+                <td><span class="score-chip chip-mid">0,63</span></td>
+                <td>25%</td>
+                <td style="font-family:'DM Mono',monospace;">0,158</td>
+                <td>Sedang</td>
+              </tr>
+              <tr style="border-top:2px solid var(--mist);border-left:3px solid var(--place-color);">
+                <td rowspan="3" style="background:rgba(183,75,46,0.04);font-weight:600;color:var(--place-color);vertical-align:top;padding-top:1rem;">PLACE<br><span style="font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--ink);">0,404</span></td>
+                <td>Kepadatan Hunian</td>
+                <td><span class="score-chip chip-low">0,218</span></td>
+                <td>33,3%</td>
+                <td style="font-family:'DM Mono',monospace;">0,073</td>
+                <td>Rendah</td>
+              </tr>
+              <tr style="border-left:3px solid var(--place-color);">
+                <td>Diversitas Guna Lahan</td>
+                <td><span class="score-chip chip-mid">0,590</span></td>
+                <td>33,3%</td>
+                <td style="font-family:'DM Mono',monospace;">0,197</td>
+                <td>Sedang</td>
+              </tr>
+              <tr style="border-left:3px solid var(--place-color);">
+                <td>Intensitas Fisik Bangunan</td>
+                <td><span class="score-chip chip-mid">0,403</span></td>
+                <td>33,3%</td>
+                <td style="font-family:'DM Mono',monospace;">0,134</td>
+                <td>Sedang-Rendah</td>
+              </tr>
+              <tr style="border-top:2px solid var(--mist);border-left:3px solid var(--design-color);">
+                <td rowspan="2" style="background:rgba(46,125,79,0.04);font-weight:600;color:var(--design-color);vertical-align:top;padding-top:1rem;">DESIGN<br><span style="font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--ink);">0,620</span></td>
+                <td>Pedshed Ratio (Permeabilitas)</td>
+                <td><span class="score-chip chip-mid">0,58</span></td>
+                <td>50%</td>
+                <td style="font-family:'DM Mono',monospace;">0,290</td>
+                <td>Buruk</td>
+              </tr>
+              <tr style="border-left:3px solid var(--design-color);">
+                <td>Kualitas Walkability</td>
+                <td><span class="score-chip chip-mid">0,64</span></td>
+                <td>50%</td>
+                <td style="font-family:'DM Mono',monospace;">0,320</td>
+                <td>Cukup</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="formula-box" style="margin-top:1.5rem;">
+            <div class="f-label">Normalisasi Min-Max (berlaku semua indikator)</div>
+            <div class="f-line">I<sub>x</sub> = (x – x<sub>min</sub>) / (x<sub>max</sub> – x<sub>min</sub>)</div>
+            <div class="f-label" style="margin-top:0.8rem;">Koordinat Matriks Node-Place</div>
+            <div class="f-line">Sumbu Y (Node): I<sub>N</sub> = 0,783 → <strong>High Node</strong> (di atas 0,50)</div>
+            <div class="f-line">Sumbu X (Place): I<sub>P</sub> = 0,404 → <strong>Low Place</strong> (di bawah 0,50)</div>
+            <div class="f-line">Filter Design: I<sub>D</sub> = 0,620 → Hambatan Sedang</div>
+            <div class="f-result">Tipologi: <span>Unbalanced Node</span></div>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:0.9rem;font-weight:600;margin-bottom:1.2rem;">Perbandingan Skor 9 Indikator</h4>
+          <!-- Full radar-like horizontal bars for all 9 indicators -->
+          <div style="display:flex;flex-direction:column;gap:0.7rem;">
+            <div style="font-size:0.72rem;color:#999;text-transform:uppercase;letter-spacing:0.08em;padding-bottom:0.3rem;border-bottom:1px solid var(--mist);display:flex;justify-content:space-between;"><span>Indikator</span><span>0 ←──────────────→ 1</span></div>
+            <!-- Node indicators -->
+            <div style="font-size:0.7rem;color:var(--node-color);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.3rem;">▸ Dimensi Node</div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span style="font-size:0.8rem;min-width:140px;">Keragaman Moda</span>
+              <div style="flex:1;background:var(--mist);height:10px;border-radius:1px;"><div style="width:50%;height:10px;background:var(--node-color);border-radius:1px;"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.78rem;min-width:36px;color:var(--node-color);">0,50</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span style="font-size:0.8rem;min-width:140px;">Konektivitas Jaringan</span>
+              <div style="flex:1;background:var(--mist);height:10px;border-radius:1px;"><div style="width:100%;height:10px;background:var(--node-color);border-radius:1px;"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.78rem;min-width:36px;color:var(--node-color);">1,00</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span style="font-size:0.8rem;min-width:140px;">Intensitas Layanan</span>
+              <div style="flex:1;background:var(--mist);height:10px;border-radius:1px;"><div style="width:100%;height:10px;background:var(--node-color);border-radius:1px;"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.78rem;min-width:36px;color:var(--node-color);">1,00</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span style="font-size:0.8rem;min-width:140px;">Integrasi Antarmoda</span>
+              <div style="flex:1;background:var(--mist);height:10px;border-radius:1px;"><div style="width:63%;height:10px;background:var(--node-color);border-radius:1px;"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.78rem;min-width:36px;color:var(--node-color);">0,63</span>
+            </div>
+            <!-- Place indicators -->
+            <div style="font-size:0.7rem;color:var(--place-color);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.3rem;">▸ Dimensi Place</div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span style="font-size:0.8rem;min-width:140px;">Kepadatan Hunian</span>
+              <div style="flex:1;background:var(--mist);height:10px;border-radius:1px;"><div style="width:21.8%;height:10px;background:var(--place-color);border-radius:1px;"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.78rem;min-width:36px;color:var(--place-color);">0,22</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span style="font-size:0.8rem;min-width:140px;">Diversitas Lahan</span>
+              <div style="flex:1;background:var(--mist);height:10px;border-radius:1px;"><div style="width:59%;height:10px;background:var(--place-color);border-radius:1px;"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.78rem;min-width:36px;color:var(--place-color);">0,59</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span style="font-size:0.8rem;min-width:140px;">Intensitas Fisik (KDB+KLB)</span>
+              <div style="flex:1;background:var(--mist);height:10px;border-radius:1px;"><div style="width:40.3%;height:10px;background:var(--place-color);border-radius:1px;"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.78rem;min-width:36px;color:var(--place-color);">0,40</span>
+            </div>
+            <!-- Design indicators -->
+            <div style="font-size:0.7rem;color:var(--design-color);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.3rem;">▸ Dimensi Design</div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span style="font-size:0.8rem;min-width:140px;">Pedshed Ratio</span>
+              <div style="flex:1;background:var(--mist);height:10px;border-radius:1px;"><div style="width:58%;height:10px;background:var(--design-color);border-radius:1px;"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.78rem;min-width:36px;color:var(--design-color);">0,58</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span style="font-size:0.8rem;min-width:140px;">Walkability Score</span>
+              <div style="flex:1;background:var(--mist);height:10px;border-radius:1px;"><div style="width:64%;height:10px;background:var(--design-color);border-radius:1px;"></div></div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.78rem;min-width:36px;color:var(--design-color);">0,64</span>
+            </div>
+            <!-- Composite markers -->
+            <div style="border-top:1px solid var(--mist);padding-top:0.7rem;margin-top:0.3rem;font-size:0.7rem;color:#999;text-transform:uppercase;letter-spacing:0.08em;">▸ Indeks Komposit</div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span style="font-size:0.8rem;min-width:140px;font-weight:600;color:var(--node-color);">I Node</span>
+              <div style="flex:1;background:rgba(42,95,143,0.12);height:14px;border-radius:1px;position:relative;">
+                <div style="width:78.3%;height:14px;background:var(--node-color);border-radius:1px;"></div>
+              </div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.82rem;min-width:36px;color:var(--node-color);font-weight:700;">0,78</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span style="font-size:0.8rem;min-width:140px;font-weight:600;color:var(--place-color);">I Place</span>
+              <div style="flex:1;background:rgba(183,75,46,0.12);height:14px;border-radius:1px;">
+                <div style="width:40.4%;height:14px;background:var(--place-color);border-radius:1px;"></div>
+              </div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.82rem;min-width:36px;color:var(--place-color);font-weight:700;">0,40</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <span style="font-size:0.8rem;min-width:140px;font-weight:600;color:var(--design-color);">I Design</span>
+              <div style="flex:1;background:rgba(46,125,79,0.12);height:14px;border-radius:1px;">
+                <div style="width:62%;height:14px;background:var(--design-color);border-radius:1px;"></div>
+              </div>
+              <span style="font-family:'DM Mono',monospace;font-size:0.82rem;min-width:36px;color:var(--design-color);font-weight:700;">0,62</span>
+            </div>
+          </div>
+
+          <div class="calc-summary-row" style="margin-top:1.5rem;">
+            <div class="cs-cell">
+              <div class="cs-label">Node</div>
+              <div class="cs-val cs-node">0,78</div>
+              <div class="cs-cat">Tinggi</div>
+            </div>
+            <div class="cs-cell">
+              <div class="cs-label">Place</div>
+              <div class="cs-val cs-place">0,40</div>
+              <div class="cs-cat">Sedang-Rendah</div>
+            </div>
+            <div class="cs-cell">
+              <div class="cs-label">Design</div>
+              <div class="cs-val cs-design">0,62</div>
+              <div class="cs-cat">Cukup</div>
+            </div>
+            <div class="cs-cell" style="background:rgba(201,150,58,0.06);">
+              <div class="cs-label">Tipologi</div>
+              <div class="cs-val" style="color:var(--gold);font-size:0.9rem;line-height:1.2;margin:0.3rem 0;">Unbalanced<br>Node</div>
+              <div class="cs-cat">Gap = 0,38</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGI -->
+<section class="research" id="method">
+  <div class="container">
+    <p class="section-label reveal">Metodologi</p>
+    <h2 class="section-title reveal">Pendekatan &amp; Kerangka Penelitian</h2>
+    <div class="section-divider reveal"></div>
+    <div class="research-grid">
+      <div class="reveal">
+        <h3 class="subsection-title">Pendekatan Penelitian</h3>
+        <p style="font-size:0.9rem;color:#444;margin-bottom:1.2rem;">Penelitian menggunakan pendekatan deduktif-kuantitatif dengan metode campuran (mixed-methods) strategi sekuensial eksploratoris. Model Extended Node-Place (Vale, 2015) diadaptasi untuk konteks terminal bus Indonesia.</p>
+        <div class="method-pills">
+          <span class="pill">Kuantitatif</span>
+          <span class="pill">Analisis GIS</span>
+          <span class="pill">Walkability Audit</span>
+          <span class="pill">Min-Max Normalisasi</span>
+          <span class="pill">Node-Place Matrix</span>
+        </div>
+        <div class="step-list" style="margin-top:1.5rem;">
+          <div class="step">
+            <span class="step-num">01</span>
+            <div class="step-content"><strong>Pengumpulan Data Primer</strong><p>Traffic counting, observasi lapangan, walkability audit 48 segmen, sensus persil bangunan</p></div>
+          </div>
+          <div class="step">
+            <span class="step-num">02</span>
+            <div class="step-content"><strong>Pengumpulan Data Sekunder</strong><p>Data Dishub, RTRW Bandung, BPS, peta OSM, citra satelit Esri</p></div>
+          </div>
+          <div class="step">
+            <span class="step-num">03</span>
+            <div class="step-content"><strong>Analisis Per Indikator</strong><p>Perhitungan skor Node (4 ind.), Place (3 ind.), Design (2 ind.)</p></div>
+          </div>
+          <div class="step">
+            <span class="step-num">04</span>
+            <div class="step-content"><strong>Normalisasi &amp; Komposit</strong><p>Min-Max Normalization, equal weight, agregasi indeks komposit</p></div>
+          </div>
+          <div class="step">
+            <span class="step-num">05</span>
+            <div class="step-content"><strong>Plotting Matriks &amp; Tipologi</strong><p>Pemetaan koordinat (Node, Place) → klasifikasi 5 tipologi Bertolini</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3 class="subsection-title">Landasan Teoretis</h3>
+        <div class="step-list">
+          <div class="step">
+            <span class="step-num" style="color:#5b9fd4">B99</span>
+            <div class="step-content"><strong>Bertolini (1999) – Node-Place Model</strong><p>Kerangka klasik dualitas stasiun: Node vs Place; 5 tipologi keseimbangan kawasan transit</p></div>
+          </div>
+          <div class="step">
+            <span class="step-num" style="color:#5ec487">V15</span>
+            <div class="step-content"><strong>Vale (2015) – Extended + Design</strong><p>Penambahan dimensi Design (Pedshed Ratio) untuk mengungkap defisit permeabilitas fisik</p></div>
+          </div>
+          <div class="step">
+            <span class="step-num" style="color:#e07a62">L16</span>
+            <div class="step-content"><strong>Lyu et al. (2016) – Morfologi Blok</strong><p>Kepadatan persimpangan dan ukuran blok sebagai penentu aksesibilitas kota padat</p></div>
+          </div>
+          <div class="step">
+            <span class="step-num" style="color:#a08060">C97</span>
+            <div class="step-content"><strong>Cervero &amp; Kockelman (1997) – 3D</strong><p>Density, Diversity, Design sebagai tiga pilar pengukuran kawasan berbasis transit</p></div>
+          </div>
+          <div class="step">
+            <span class="step-num" style="color:#c9963a">R08</span>
+            <div class="step-content"><strong>Reusser et al. (2008) – Tipologi</strong><p>Perluasan klasifikasi tipologi keseimbangan Node-Place untuk evaluasi berkelanjutan</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WILAYAH STUDI -->
+<section class="study-area" id="area">
+  <div class="container">
+    <p class="section-label reveal">Gambaran Umum</p>
+    <h2 class="section-title reveal">Wilayah Kajian — Radius 800m Terminal Leuwi Panjang</h2>
+    <div class="section-divider reveal"></div>
+    <div class="area-grid">
+      <div class="reveal">
+        <p style="font-size:0.92rem;color:#444;margin-bottom:1.5rem;line-height:1.8;">Wilayah studi mencakup 197,53 hektar yang diperoleh melalui buffering radius 800 meter dari titik pusat Terminal Leuwi Panjang, melintasi 8 kelurahan di 3 kecamatan (Bojongloa Kidul, Bojongloa Kaler, Babakan Ciparay).</p>
+        <table class="kelurahan-table">
+          <thead>
+            <tr>
+              <th>Kelurahan</th>
+              <th>Luas (Ha)</th>
+              <th>Porsi</th>
+              <th>%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Kebon Lega</td><td>87,26</td><td><div class="bar-cell"><div class="mini-bar-wrap"><div class="mini-bar" style="width:100%"></div></div></div></td><td>44,2%</td></tr>
+            <tr><td>Situsaeur</td><td>49,33</td><td><div class="bar-cell"><div class="mini-bar-wrap"><div class="mini-bar" style="width:57%"></div></div></div></td><td>25,0%</td></tr>
+            <tr><td>Kopo</td><td>38,96</td><td><div class="bar-cell"><div class="mini-bar-wrap"><div class="mini-bar" style="width:45%"></div></div></div></td><td>19,7%</td></tr>
+            <tr><td>Cibaduyut</td><td>15,70</td><td><div class="bar-cell"><div class="mini-bar-wrap"><div class="mini-bar" style="width:18%"></div></div></div></td><td>7,9%</td></tr>
+            <tr><td>Babakan Ciparay</td><td>4,23</td><td><div class="bar-cell"><div class="mini-bar-wrap"><div class="mini-bar" style="width:5%"></div></div></div></td><td>2,1%</td></tr>
+            <tr><td>Suka Asih</td><td>1,83</td><td><div class="bar-cell"><div class="mini-bar-wrap"><div class="mini-bar" style="width:2%"></div></div></div></td><td>0,9%</td></tr>
+            <tr><td>Margahayu Utara</td><td>0,17</td><td><div class="bar-cell"><div class="mini-bar-wrap"><div class="mini-bar" style="width:0.3%"></div></div></div></td><td>0,1%</td></tr>
+            <tr><td>Mekar Wangi</td><td>0,04</td><td><div class="bar-cell"><div class="mini-bar-wrap"><div class="mini-bar" style="width:0.1%"></div></div></div></td><td>0,02%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="reveal">
+        <div class="info-card">
+          <div class="info-card-title">Total Luas Studi</div>
+          <div class="info-card-value">197,53 Ha</div>
+          <div class="info-card-sub">Radius 800m dari terminal (standar TOD ~10 menit jalan kaki)</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">Estimasi Penduduk</div>
+          <div class="info-card-value">54.596 Jiwa</div>
+          <div class="info-card-sub">Kepadatan 276 jiwa/Ha — jauh di atas rata-rata Kota Bandung (150 jiwa/Ha)</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">Total Bangunan</div>
+          <div class="info-card-value">10.240 Unit</div>
+          <div class="info-card-sub">Hunian 75,8% · Usaha 14,7% · Campuran 8,1% · Lainnya 1,4%</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">Lokasi Strategis</div>
+          <div class="info-card-value">Gerbang Selatan</div>
+          <div class="info-card-sub">Persimpangan Jl. Soekarno-Hatta, Kopo, Gerbang Tol Pasir Koja &amp; Kopo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORTASI -->
+<section class="transport" id="transport">
+  <div class="container">
+    <p class="section-label reveal">Dimensi Node</p>
+    <h2 class="section-title reveal" style="color:var(--paper);">Profil Sistem Transportasi</h2>
+    <div class="section-divider reveal"></div>
+    <div class="transport-grid reveal">
+      <div class="mode-card">
+        <div class="mode-header">
+          <span class="mode-icon">🚌</span>
+          <div><div class="mode-title">Bus Rapid Transit (BRT)</div><div class="mode-sub">Trans Metro Pasundan / Trans Metro Bandung</div></div>
+        </div>
+        <div class="mode-rows">
+          <div class="mode-row"><span class="route-tag tag-blue">Kor.1</span> Soreang – Gading Tutuka – Leuwi Panjang</div>
+          <div class="mode-row"><span class="route-tag tag-blue">Kor.4</span> Leuwipanjang – Dipatiukur BEC – UNPAD</div>
+          <div class="mode-row"><span class="route-tag tag-blue">Kor.6</span> Leuwipanjang – Majalaya</div>
+          <div class="mode-row"><span class="route-tag tag-green">K4</span> Leuwipanjang – Terminal Antapani</div>
+          <div class="mode-row"><span class="route-tag tag-green">K1</span> Cibiru – Cibeureum</div>
+          <div class="mode-row" style="color:rgba(245,240,232,0.4);font-size:0.78rem;">Headway: 10–20 menit · Cashless (QRIS/E-Money)</div>
+        </div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-header">
+          <span class="mode-icon">🚐</span>
+          <div><div class="mode-title">Bus DAMRI &amp; Bus Kota</div><div class="mode-sub">Reguler Perkotaan</div></div>
+        </div>
+        <div class="mode-rows">
+          <div class="mode-row"><span class="route-tag tag-green">D-11</span> Leuwipanjang – Ledeng (via Pasirkaliki)</div>
+          <div class="mode-row"><span class="route-tag tag-green">D-8</span> Leuwipanjang – Cicaheum (via Soekarno Hatta)</div>
+          <div class="mode-row" style="color:rgba(245,240,232,0.5);font-size:0.8rem;">+ Feeder TMB: Cibeureum – Mall Sumarecon</div>
+          <div class="mode-row" style="color:rgba(245,240,232,0.4);font-size:0.78rem;">Tarif: Rp 4.000 – Rp 8.000</div>
+        </div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-header">
+          <span class="mode-icon">🚌</span>
+          <div><div class="mode-title">AKDP &amp; AKAP</div><div class="mode-sub">Antar Kota Dalam/Antar Provinsi</div></div>
+        </div>
+        <div class="mode-rows">
+          <div class="mode-row"><span class="route-tag tag-red">AKDP</span> Bogor, Sukabumi, Cianjur, Bekasi, Cirebon (>12 rute)</div>
+          <div class="mode-row"><span class="route-tag tag-red">AKAP</span> Jakarta (Kalideres, Kp.Rambutan, Tj.Priok)</div>
+          <div class="mode-row"><span class="route-tag tag-red">AKAP</span> Merak/Banten, Sumatera (ALS, Kramat Djati)</div>
+          <div class="mode-row" style="color:rgba(245,240,232,0.4);font-size:0.78rem;">Tarif Jakarta: Rp 85.000–100.000 · Operasi 24 jam</div>
+        </div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-header">
+          <span class="mode-icon">🚖</span>
+          <div><div class="mode-title">Angkot &amp; Elf</div><div class="mode-sub">Pengumpan / Feeder Lokal</div></div>
+        </div>
+        <div class="mode-rows">
+          <div class="mode-row"><span class="route-tag tag-green">Angkot</span> St.Hall, Ciroyom, Cicaheum, Kb.Kalapa, Soreang, Cimahi (7+ trayek)</div>
+          <div class="mode-row"><span class="route-tag tag-green">Elf</span> Ciwidey, Pangalengan, Cicalengka, Majalaya</div>
+          <div class="mode-row" style="color:rgba(245,240,232,0.4);font-size:0.78rem;">Frekuensi tinggi: <2 menit headway di jam sibuk · Tunai</div>
+        </div>
+      </div>
+    </div>
+    <div class="freq-highlight reveal" style="margin-top:1.5rem;display:flex;gap:3rem;align-items:center;flex-wrap:wrap;">
+      <div><div class="freq-number">100+</div><div class="freq-label">kendaraan/jam pada jam sibuk</div></div>
+      <div><div class="freq-number">40+</div><div class="freq-label">trayek unik (lokal, regional, nasional)</div></div>
+      <div><div class="freq-number">Tipe A</div><div class="freq-label">terminal di bawah Kemenhub</div></div>
+      <div style="max-width:360px;">
+        <p style="font-size:0.85rem;color:rgba(245,240,232,0.55);line-height:1.7;">Seluruh layanan berbasis jalan raya (road-based) tanpa dukungan moda rel (KRL/LRT), menjadikan kinerja terminal rentan terhadap saturasi lalu lintas di koridor Soekarno-Hatta dan Kopo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WALKABILITY -->
+<section class="walkability" id="walkability">
+  <div class="container">
+    <p class="section-label reveal">Dimensi Design</p>
+    <h2 class="section-title reveal">Kualitas Lingkungan Pejalan Kaki</h2>
+    <div class="section-divider reveal"></div>
+    <div class="walk-grid">
+      <div class="reveal">
+        <h3 class="subsection-title">Indeks Walkability Per Koridor</h3>
+        <p style="font-size:0.88rem;color:#555;margin-bottom:1.2rem;">Audit walkability dilakukan pada 48 segmen trotoar di 6 koridor jalan utama kawasan studi.</p>
+        <div class="corridor-list">
+          <div class="corridor-item">
+            <span class="corridor-name">Jl. Leuwi Panjang</span>
+            <div class="corridor-bar-wrap"><div class="corridor-bar good" style="width:75%"></div></div>
+            <span class="corridor-score good-pct">0.75</span>
+          </div>
+          <div class="corridor-item">
+            <span class="corridor-name">Jl. Cibaduyut</span>
+            <div class="corridor-bar-wrap"><div class="corridor-bar good" style="width:70%"></div></div>
+            <span class="corridor-score good-pct">0.70</span>
+          </div>
+          <div class="corridor-item">
+            <span class="corridor-name">Jl. Kopo</span>
+            <div class="corridor-bar-wrap"><div class="corridor-bar fair" style="width:69%"></div></div>
+            <span class="corridor-score mid-pct">0.69</span>
+          </div>
+          <div class="corridor-item">
+            <span class="corridor-name">Jl. Cibaduyut Dalam</span>
+            <div class="corridor-bar-wrap"><div class="corridor-bar fair" style="width:60%"></div></div>
+            <span class="corridor-score mid-pct">0.60</span>
+          </div>
+          <div class="corridor-item">
+            <span class="corridor-name">Jl. Caringin</span>
+            <div class="corridor-bar-wrap"><div class="corridor-bar fair" style="width:60%"></div></div>
+            <span class="corridor-score mid-pct">0.60</span>
+          </div>
+          <div class="corridor-item">
+            <span class="corridor-name">Jl. Soekarno Hatta</span>
+            <div class="corridor-bar-wrap"><div class="corridor-bar poor" style="width:54%"></div></div>
+            <span class="corridor-score bad-pct">0.54</span>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;padding:1.2rem;background:var(--cream);font-size:0.85rem;color:#444;line-height:1.7;">
+          <strong>Pedshed Ratio: 0,58</strong> — Hanya 58% wilayah dalam radius 800m benar-benar terhubung oleh jaringan jalan kaki. Sekitar 82,53 ha (42%) terisolasi secara konektivitas pejalan kaki meskipun dekat secara jarak lurus.
+        </div>
+      </div>
+      <div class="reveal">
+        <h3 class="subsection-title">Kondisi 5 Indikator Fisik (48 Segmen)</h3>
+        <div class="indicator-grid">
+          <div class="ind-card">
+            <div class="ind-card-pct good-pct">93,8%</div>
+            <div class="ind-card-name">Konektivitas Jaringan</div>
+          </div>
+          <div class="ind-card">
+            <div class="ind-card-pct good-pct">81,3%</div>
+            <div class="ind-card-name">Peneduh (Pohon/Kanopi)</div>
+          </div>
+          <div class="ind-card">
+            <div class="ind-card-pct good-pct">81,3%</div>
+            <div class="ind-card-name">Lampu Penerangan</div>
+          </div>
+          <div class="ind-card">
+            <div class="ind-card-pct mid-pct">45,8%</div>
+            <div class="ind-card-name">Fasilitas Disabilitas</div>
+          </div>
+          <div class="ind-card" style="grid-column:1/-1;">
+            <div class="ind-card-pct bad-pct">16,7%</div>
+            <div class="ind-card-name">⚠ Permukaan Trotoar Layak (KRITIS)</div>
+          </div>
+        </div>
+        <div style="margin-top:1.2rem;padding:1.2rem;background:#fff0ec;border-left:3px solid var(--rust);font-size:0.85rem;color:#444;line-height:1.7;">
+          <strong>Paradoks Infrastruktur:</strong> Konektivitas jaringan sangat baik (93,8%), namun kualitas detail konstruksi sangat buruk. Lebih dari 80% trotoar mengalami kerusakan fisik. Kawasan mengakomodasi tapi tidak mengundang pejalan kaki.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPOLOGI -->
+<section class="typology" id="typology">
+  <div class="container">
+    <p class="section-label reveal">Sintesis Akhir</p>
+    <h2 class="section-title reveal">Matriks Node-Place &amp; Tipologi Kawasan</h2>
+    <div class="section-divider reveal"></div>
+    <div class="typology-layout">
+      <div class="matrix-container reveal">
+        <svg class="matrix-svg" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background quadrants -->
+          <rect x="50" y="210" width="160" height="160" fill="rgba(183,75,46,0.06)"/>
+          <rect x="210" y="50" width="160" height="160" fill="rgba(42,95,143,0.06)"/>
+          <rect x="210" y="210" width="160" height="160" fill="rgba(46,125,79,0.06)"/>
+          <rect x="50" y="50" width="160" height="160" fill="rgba(201,150,58,0.04)"/>
+          <!-- Grid -->
+          <line x1="50" y1="370" x2="390" y2="370" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+          <line x1="50" y1="50" x2="50" y2="370" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+          <line x1="50" y1="210" x2="390" y2="210" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="6,4"/>
+          <line x1="210" y1="50" x2="210" y2="370" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="6,4"/>
+          <!-- Balance line -->
+          <line x1="50" y1="370" x2="390" y2="50" stroke="rgba(201,150,58,0.3)" stroke-width="2"/>
+          <!-- Quadrant Labels -->
+          <text x="130" y="155" fill="rgba(42,95,143,0.8)" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" text-anchor="middle">UNBALANCED</text>
+          <text x="130" y="170" fill="rgba(42,95,143,0.8)" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" text-anchor="middle">NODE ↑</text>
+          <text x="300" y="305" fill="rgba(183,75,46,0.8)" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" text-anchor="middle">UNBALANCED</text>
+          <text x="300" y="320" fill="rgba(183,75,46,0.8)" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" text-anchor="middle">PLACE →</text>
+          <text x="300" y="155" fill="rgba(201,150,58,0.7)" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" text-anchor="middle">STRESSED</text>
+          <text x="300" y="170" fill="rgba(201,150,58,0.7)" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" text-anchor="middle">↑↑</text>
+          <text x="130" y="305" fill="rgba(255,255,255,0.3)" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" text-anchor="middle">DEPENDENT</text>
+          <text x="220" y="215" fill="rgba(46,125,79,0.8)" font-family="DM Sans,sans-serif" font-size="10" font-weight="600">BALANCED</text>
+          <!-- Axis Labels -->
+          <text x="220" y="395" fill="rgba(255,255,255,0.5)" font-family="DM Mono,monospace" font-size="10">PLACE INDEX (Aktivitas Kawasan)</text>
+          <text x="20" y="200" fill="rgba(255,255,255,0.5)" font-family="DM Mono,monospace" font-size="10" transform="rotate(-90,20,210)">NODE INDEX (Suplai Transportasi)</text>
+          <!-- Axis values -->
+          <text x="50" y="385" fill="rgba(255,255,255,0.35)" font-family="DM Mono,monospace" font-size="9" text-anchor="middle">0</text>
+          <text x="210" y="385" fill="rgba(255,255,255,0.35)" font-family="DM Mono,monospace" font-size="9" text-anchor="middle">0.5</text>
+          <text x="390" y="385" fill="rgba(255,255,255,0.35)" font-family="DM Mono,monospace" font-size="9" text-anchor="middle">1.0</text>
+          <text x="38" y="374" fill="rgba(255,255,255,0.35)" font-family="DM Mono,monospace" font-size="9" text-anchor="end">0</text>
+          <text x="38" y="214" fill="rgba(255,255,255,0.35)" font-family="DM Mono,monospace" font-size="9" text-anchor="end">0.5</text>
+          <text x="38" y="54" fill="rgba(255,255,255,0.35)" font-family="DM Mono,monospace" font-size="9" text-anchor="end">1.0</text>
+          <!-- Dotted guides: Node=0.78→Y=370-0.78*320=120; Place=0.40→X=50+0.40*340=186 -->
+          <line x1="186" y1="120" x2="186" y2="370" stroke="rgba(201,150,58,0.35)" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="186" y1="120" x2="50" y2="120" stroke="rgba(201,150,58,0.35)" stroke-width="1" stroke-dasharray="4,3"/>
+          <!-- Pulse ring -->
+          <circle cx="186" cy="120" r="24" fill="rgba(201,150,58,0.08)" stroke="rgba(201,150,58,0.3)" stroke-width="1"/>
+          <circle cx="186" cy="120" r="12" fill="rgba(201,150,58,0.2)" stroke="rgba(201,150,58,0.6)" stroke-width="1.5"/>
+          <circle cx="186" cy="120" r="5" fill="#c9963a"/>
+          <!-- Axis value highlights -->
+          <text x="186" y="386" fill="rgba(201,150,58,0.9)" font-family="DM Mono,monospace" font-size="10" font-weight="600" text-anchor="middle">0.40</text>
+          <text x="36" y="124" fill="rgba(201,150,58,0.9)" font-family="DM Mono,monospace" font-size="10" font-weight="600" text-anchor="end">0.78</text>
+          <!-- Label -->
+          <text x="210" y="115" fill="#c9963a" font-family="DM Sans,sans-serif" font-size="10.5" font-weight="700">Terminal Leuwi Panjang</text>
+        </svg>
+      </div>
+      <div class="typology-text reveal">
+        <span class="badge">Unbalanced Node</span>
+        <h3 class="typology-heading">Simpul Tidak Seimbang — Transportasi Mendominasi</h3>
+        <p class="typology-desc">Dengan koordinat Node (0,78) dan Place (0,40), kawasan ini berada di kuadran kiri atas matriks, jauh dari garis keseimbangan. Fungsi transportasi sudah maju pesat, namun kawasan sekitar belum merespons dengan pengembangan yang setara.</p>
+        <div class="char-list">
+          <div class="char-item">
+            <span class="char-dot char-dot-blue"></span>
+            <div class="char-content">
+              <strong>Node Sangat Kuat (0,78)</strong>
+              <p>43+ trayek, 100+ kendaraan/jam, BRT modern dengan GPS tracking</p>
+            </div>
+          </div>
+          <div class="char-item">
+            <span class="char-dot char-dot-red"></span>
+            <div class="char-content">
+              <strong>Place Lemah (0,40)</strong>
+              <p>90,3% bangunan 1-2 lantai, kepadatan hunian 43,5 unit/ha (target 200 unit/ha)</p>
+            </div>
+          </div>
+          <div class="char-item">
+            <span class="char-dot char-dot-gold"></span>
+            <div class="char-content">
+              <strong>Design Hambatan Sedang (0,62)</strong>
+              <p>Jembatan Node-Place belum optimal; trotoar ada tapi kualitas buruk</p>
+            </div>
+          </div>
+          <div class="char-item">
+            <span class="char-dot char-dot-gold"></span>
+            <div class="char-content">
+              <strong>Peluang Besar Menuju Balanced</strong>
+              <p>Fondasi transportasi kuat memungkinkan transformasi TOD jika diikuti intensifikasi lahan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY FINDINGS -->
+<section class="findings" id="findings">
+  <div class="container">
+    <p class="section-label reveal">Temuan Utama</p>
+    <h2 class="section-title reveal">Kekuatan, Kelemahan &amp; Peluang</h2>
+    <div class="section-divider reveal"></div>
+    <div class="findings-grid reveal">
+      <div class="finding-card">
+        <span class="finding-icon">⚡</span>
+        <h4 class="finding-title">Konektivitas Jaringan Maksimal</h4>
+        <p class="finding-text">Lebih dari 40 trayek unik menghubungkan kawasan ke seluruh lapisan wilayah — dari gang lokal hingga lintas pulau ke Sumatera. Skor 1,00 adalah kekuatan tertinggi kawasan.</p>
+        <span class="finding-tag tag-strength">Kekuatan</span>
+      </div>
+      <div class="finding-card">
+        <span class="finding-icon">🏠</span>
+        <h4 class="finding-title">Dominasi Hunian Horizontal Rendah</h4>
+        <p class="finding-text">90,3% bangunan adalah rumah 1-2 lantai. KLB hanya 0,86 dari target 5,0. Kawasan baru memanfaatkan 17,2% kapasitas vertikal yang seharusnya ada di kawasan TOD.</p>
+        <span class="finding-tag tag-weakness">Kelemahan</span>
+      </div>
+      <div class="finding-card">
+        <span class="finding-icon">💳</span>
+        <h4 class="finding-title">Fragmentasi Sistem Pembayaran</h4>
+        <p class="finding-text">Empat sistem berbeda (TMP/TMJ, TMB, DAMRI, Angkot tunai) beroperasi tanpa integrasi. Penumpang harus membayar penuh di setiap moda, menciptakan friksi transaksi yang menurunkan efisiensi transit.</p>
+        <span class="finding-tag tag-weakness">Kelemahan</span>
+      </div>
+      <div class="finding-card">
+        <span class="finding-icon">🛤️</span>
+        <h4 class="finding-title">Permukaan Trotoar Kritis</h4>
+        <p class="finding-text">Hanya 16,7% dari 48 segmen trotoar yang dievaluasi memiliki permukaan layak. Retak, lubang, dan genangan air mendominasi, meningkatkan risiko kecelakaan terutama saat hujan.</p>
+        <span class="finding-tag tag-weakness">Kelemahan</span>
+      </div>
+      <div class="finding-card">
+        <span class="finding-icon">📍</span>
+        <h4 class="finding-title">Posisi Strategis &amp; Potensi TOD</h4>
+        <p class="finding-text">Terminal berada di persimpangan arteri primer Jl. Soekarno-Hatta dengan akses ke 2 gerbang tol. Kepadatan penduduk 276 jiwa/Ha menyediakan captive market yang besar untuk pengembangan TOD.</p>
+        <span class="finding-tag tag-opportunity">Peluang</span>
+      </div>
+      <div class="finding-card">
+        <span class="finding-icon">🏪</span>
+        <h4 class="finding-title">Tiga Poros Aktivitas Unggulan</h4>
+        <p class="finding-text">Terminal Leuwi Panjang (dengan MPP &amp; Samsat Digital), RS Kiwari (rujukan regional), dan Sentra Sepatu Cibaduyut membentuk ekosistem aktivitas yang kuat sebagai fondasi kawasan TOD.</p>
+        <span class="finding-tag tag-opportunity">Peluang</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REKOMENDASI -->
+<section class="recommendations" id="recommendations">
+  <div class="container">
+    <p class="section-label reveal">Strategi Pengembangan</p>
+    <h2 class="section-title reveal">Rekomendasi untuk Keseimbangan Kawasan</h2>
+    <div class="section-divider reveal"></div>
+    <div class="rec-grid reveal">
+      <div class="rec-card">
+        <span class="rec-number">01</span>
+        <p class="rec-priority">Prioritas Tinggi · Dimensi Place</p>
+        <h4 class="rec-title">Peningkatan Kepadatan Bangunan Vertikal</h4>
+        <p class="rec-text">Transformasi dominasi rumah tapak 1-2 lantai menuju bangunan bertingkat (minimum 3-4 lantai) di koridor jalan utama. Perubahan regulasi KLB dari 0,86 menuju target 3,0–5,0 sesuai Permen ATR/BPN No.16/2017. Insentif pembangunan bagi pengembang yang memenuhi standar TOD.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-number">02</span>
+        <p class="rec-priority">Prioritas Tinggi · Dimensi Design</p>
+        <h4 class="rec-title">Rehabilitasi Permukaan Trotoar &amp; Inklusivitas</h4>
+        <p class="rec-text">Perbaikan menyeluruh permukaan 83% trotoar yang rusak (khususnya Jl. Soekarno Hatta dan Kopo). Pemasangan guiding block universal di semua koridor. Pembangunan ramp setiap 100 meter. Target meningkatkan Walkability Score dari 0,64 ke ≥0,80.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-number">03</span>
+        <p class="rec-priority">Prioritas Sedang · Dimensi Node</p>
+        <h4 class="rec-title">Unifikasi Sistem Pembayaran Antarmoda</h4>
+        <p class="rec-text">Integrasi empat ekosistem pembayaran (TMP/TMJ, TMB, DAMRI, Angkot) dalam satu sistem single ticketing nasional. Ekspansi coverage Kartu Teman Bus untuk semua operator. Target meningkatkan Indeks Integrasi Antarmoda dari 0,63 ke ≥0,80.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-number">04</span>
+        <p class="rec-priority">Prioritas Sedang · Dimensi Design</p>
+        <h4 class="rec-title">Pembukaan Jalur Tembus &amp; Peningkatan Permeabilitas</h4>
+        <p class="rec-text">Negoisasi pembukaan akses jalan tembus di blok-blok permukiman tertutup untuk meningkatkan Pedshed Ratio dari 0,58 ke ≥0,70. Penataan PKL di Jl. Leuwi Panjang agar tidak memblokir jalur pedestrian. Pembangunan jembatan penyeberangan terlindung di Jl. Soekarno Hatta.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-number">05</span>
+        <p class="rec-priority">Jangka Menengah · Dimensi Place</p>
+        <h4 class="rec-title">Penambahan Fungsi Sosial &amp; Mixed-Use</h4>
+        <p class="rec-text">Meningkatkan proporsi fungsi sosial-budaya dari 3,4% ke standar kota sehat (8-10%). Pengembangan ruang publik aktif (plaza, taman), fasilitas olahraga, dan pusat komunitas. Mendorong bangunan mixed-use vertikal untuk meningkatkan keragaman aktivitas di luar jam kerja.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-number">06</span>
+        <p class="rec-priority">Jangka Panjang · Dimensi Node</p>
+        <h4 class="rec-title">Konektivitas Moda Rel (LRT/BRT Dedicated Lane)</h4>
+        <p class="rec-text">Advokasi percepatan realisasi LRT Bandung atau pemberian dedicated lane penuh untuk BRT Trans Metro Pasundan. Integrasi fisik stasiun/halte LRT dalam radius 200m terminal. Ini akan meningkatkan Indeks Keragaman Moda dari 0,50 ke nilai maksimal dan mengurangi kerentanan sistem terhadap kemacetan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KESIMPULAN -->
+<section class="conclusion" id="conclusion">
+  <div class="container">
+    <p class="section-label reveal">Penutup</p>
+    <h2 class="section-title reveal">Kesimpulan</h2>
+    <div class="section-divider reveal"></div>
+    <div class="score-row reveal">
+      <div class="score-bubble"><span class="bubble-val bubble-node">0,78</span><span class="bubble-label">Node · Tinggi</span></div>
+      <div class="score-bubble"><span class="bubble-val bubble-place">0,40</span><span class="bubble-label">Place · Sedang-Rendah</span></div>
+      <div class="score-bubble"><span class="bubble-val bubble-design">0,62</span><span class="bubble-label">Design · Cukup</span></div>
+      <div class="score-bubble" style="background:rgba(201,150,58,0.1);border:1px solid rgba(201,150,58,0.3);">
+        <span class="bubble-val" style="color:var(--gold);font-size:1.5rem;">Unbalanced<br>Node</span>
+        <span class="bubble-label">Tipologi Kawasan</span>
+      </div>
+    </div>
+    <div class="conclusion-body reveal">
+      <p>Terminal Leuwi Panjang telah berhasil menempatkan dirinya sebagai simpul transportasi yang kuat di wilayah Bandung Raya, dengan lebih dari 40 trayek dan frekuensi layanan lebih dari 100 kendaraan per jam. Infrastruktur terminal yang modern dan konektivitas yang luas menjadikannya salah satu terminal bus terpenting di Jawa Barat.</p>
+      <p>Namun, superioritas fungsi transportasi ini tidak diimbangi dengan respon pengembangan lahan di sekitarnya. Kawasan yang seharusnya bertransformasi menjadi pusat aktivitas perkotaan yang hidup masih bertahan dengan pola pembangunan horizontal rendah — rumah-rumah 1-2 lantai yang mendominasi, pengguna lahan vertikal yang minim, dan fungsi sosial yang jauh dari standar ideal.</p>
+      <p>Kualitas lingkungan fisik yang hanya mencapai kategori "Cukup" (0,62) memperparah kondisi ini. Trotoar yang rusak, aksesibilitas yang terbatas bagi penyandang disabilitas, dan jaringan pejalan kaki yang tidak efisien menjadi tembok tak terlihat yang memisahkan dunia transportasi dengan dunia kawasan.</p>
+      <p>Kondisi <em>Unbalanced Node</em> bukan kegagalan — melainkan peluang. Fondasi transportasi yang sangat kuat adalah modal luar biasa. Yang dibutuhkan adalah keberanian kebijakan untuk mengubah kawasan ini: densifikasi vertikal, penyatuan sistem transit, dan revitalisasi ruang pejalan kaki yang inklusif.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENSI -->
+<section class="references" id="references">
+  <div class="container">
+    <p class="section-label reveal">Pustaka Utama</p>
+    <h2 class="section-title reveal">Daftar Referensi</h2>
+    <div class="section-divider reveal"></div>
+    <div class="ref-grid reveal">
+      <div class="ref-item"><strong>Bertolini, L. (1999)</strong> Spatial development patterns and public transport: The application of an analytical model in the Netherlands. <em>Planning Practice and Research, 14</em>(2), 199–210.</div>
+      <div class="ref-item"><strong>Vale, D.S. (2015)</strong> Transit-oriented development, integration of land use and transport, and pedestrian accessibility: Combining node-place model with pedestrian shed ratio. <em>Journal of Transport Geography, 45</em>, 70–80.</div>
+      <div class="ref-item"><strong>Lyu, G., Bertolini, L., &amp; Pfeffer, K. (2016)</strong> Developing a TOD typology for Beijing metro station areas. <em>Journal of Transport Geography, 55</em>, 40–50.</div>
+      <div class="ref-item"><strong>Cervero, R. &amp; Kockelman, K. (1997)</strong> Travel demand and the 3Ds: Density, diversity, and design. <em>Transportation Research Part D, 2</em>(3), 199–219.</div>
+      <div class="ref-item"><strong>Reusser, D.E. et al. (2008)</strong> Classifying railway stations for sustainable transitions — balancing node and place functions. <em>Journal of Transport Geography, 16</em>(3), 191–202.</div>
+      <div class="ref-item"><strong>Ma, J. et al. (2022)</strong> Node-place model extended by system support: Evaluation and classification of metro station areas in Tianfu new area of Chengdu. <em>Frontiers in Environmental Science, 10</em>, 990416.</div>
+      <div class="ref-item"><strong>ITDP (2017)</strong> <em>TOD Standard 3.0.</em> Institute for Transportation and Development Policy. New York.</div>
+      <div class="ref-item"><strong>Kemen. ATR/BPN (2017)</strong> <em>Peraturan Menteri ATR/BPN Nomor 16 Tahun 2017</em> tentang Pedoman Pengembangan Kawasan Berorientasi Transit.</div>
+      <div class="ref-item"><strong>Zhang, Y. et al. (2019)</strong> Network criticality and the node-place-design model: Classifying metro station areas in Greater London. <em>Journal of Transport Geography, 74</em>, 143–154.</div>
+      <div class="ref-item"><strong>Groenendijk, L. et al. (2018)</strong> Incorporating the travellers' experience value in assessing the quality of transit nodes: A Rotterdam case study. <em>Case Studies on Transport Policy, 6</em>(4), 564–576.</div>
+      <div class="ref-item"><strong>Tamin, O.Z. (2000)</strong> <em>Perencanaan dan Pemodelan Transportasi.</em> Penerbit ITB, Bandung.</div>
+      <div class="ref-item"><strong>BPS Kota Bandung (2025)</strong> <em>Kota Bandung Dalam Angka 2025.</em> Badan Pusat Statistik Kota Bandung.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Ripan Nursalam</div>
+  <p class="footer-info">NIM 242021035 · Program Studi Perencanaan Wilayah dan Kota<br>Fakultas Teknik Sipil dan Perencanaan · Institut Teknologi Nasional Bandung · 2026</p>
+  <p style="font-size:0.75rem;color:rgba(245,240,232,0.2);margin-top:1rem;">Pembimbing: Sony Herdiana S.T., M.RegDev</p>
+</footer>
+
+<script>
+  // Tab switching for index analysis
+  function switchTab(name) {
+    document.querySelectorAll('.calc-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('pane-' + name).classList.add('active');
+    const tabs = document.querySelectorAll('.calc-tab');
+    const map = { node: 0, place: 1, design: 2, composite: 3 };
+    tabs[map[name]].classList.add('active');
+  }
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>

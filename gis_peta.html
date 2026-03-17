@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIS & Peta — Ripan Nursalam</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background:#03060f;
+  color:#e8eaf6;
+  font-family:'Space Grotesk',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── STARFIELD ── */
+canvas#stars {
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
+  z-index:0;pointer-events:none;
+}
+
+/* ── LAYOUT ── */
+.container {
+  position:relative;z-index:2;
+  max-width:1000px;margin:0 auto;
+  padding:80px 24px 100px;
+}
+
+/* ── BACK BTN ── */
+.back-btn {
+  position:fixed;top:20px;left:20px;z-index:100;
+  display:flex;align-items:center;gap:8px;
+  background:rgba(3,6,15,0.85);
+  border:1px solid rgba(126,200,255,0.3);
+  color:#7ec8ff;font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
+  padding:8px 14px;text-decoration:none;
+  backdrop-filter:blur(10px);
+  transition:all 0.25s;
+}
+.back-btn:hover {
+  background:rgba(126,200,255,0.12);
+  border-color:rgba(126,200,255,0.7);
+}
+
+/* ── HERO ── */
+.hero {
+  text-align:center;
+  margin-bottom:56px;
+  animation:fadeUp 0.8s ease both;
+}
+.hero-badge {
+  display:inline-block;
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:#7ec8ff;border:1px solid rgba(126,200,255,0.3);
+  padding:6px 16px;border-radius:100px;margin-bottom:20px;
+  background:rgba(126,200,255,0.06);
+}
+.hero h1 {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:800;line-height:1.1;
+  background:linear-gradient(135deg,#fff 30%,#7ec8ff 70%,#50e8a0 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:12px;
+}
+.hero-sub {
+  font-size:14px;color:rgba(180,210,240,0.55);
+  font-weight:300;letter-spacing:0.04em;
+}
+.divider {
+  width:50px;height:1px;
+  background:linear-gradient(90deg,transparent,#7ec8ff,transparent);
+  margin:22px auto 0;
+}
+
+/* ── UPLOAD ZONE ── */
+.upload-section {
+  margin-bottom:48px;
+  animation:fadeUp 0.8s ease 0.15s both;
+}
+
+.upload-zone {
+  border:2px dashed rgba(126,200,255,0.25);
+  border-radius:16px;
+  padding:40px 24px;
+  text-align:center;
+  cursor:pointer;
+  transition:all 0.3s;
+  background:rgba(126,200,255,0.03);
+  position:relative;
+}
+.upload-zone:hover, .upload-zone.drag-over {
+  border-color:rgba(126,200,255,0.6);
+  background:rgba(126,200,255,0.08);
+}
+.upload-zone input {
+  position:absolute;inset:0;opacity:0;cursor:pointer;
+  width:100%;height:100%;
+}
+.upload-icon {
+  font-size:32px;margin-bottom:12px;
+  display:block;
+}
+.upload-title {
+  font-family:'Syne',sans-serif;
+  font-size:16px;font-weight:700;color:#fff;
+  margin-bottom:8px;
+}
+.upload-hint {
+  font-size:12px;color:rgba(180,200,240,0.45);
+  font-family:'Space Mono',monospace;
+}
+.upload-formats {
+  display:flex;justify-content:center;gap:8px;margin-top:14px;flex-wrap:wrap;
+}
+.fmt-badge {
+  font-size:10px;padding:3px 10px;border-radius:100px;
+  border:1px solid rgba(126,200,255,0.2);
+  color:rgba(126,200,255,0.7);font-family:'Space Mono',monospace;
+}
+
+/* ── FOLDER TREE ── */
+.folder-section {
+  margin-bottom:40px;
+}
+.section-label {
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(180,200,240,0.4);margin-bottom:16px;
+  font-family:'Space Mono',monospace;
+}
+
+.folder-tree {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:14px;
+  padding:20px 22px;
+  font-family:'Space Mono',monospace;
+  font-size:12px;
+}
+
+.tree-item {
+  display:flex;align-items:center;gap:8px;
+  padding:5px 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  cursor:pointer;
+  transition:color 0.2s;
+  color:rgba(200,220,240,0.6);
+}
+.tree-item:last-child { border-bottom:none; }
+.tree-item:hover { color:#7ec8ff; }
+.tree-item.folder { color:rgba(255,200,80,0.8); font-weight:700; cursor:default; }
+.tree-item.folder:hover { color:rgba(255,200,80,1); }
+.tree-indent { padding-left:20px; }
+.tree-icon { font-size:13px; width:16px; }
+.tree-size { margin-left:auto; color:rgba(180,200,240,0.3); font-size:10px; }
+
+/* ── MAP GALLERY ── */
+.gallery-section { margin-bottom:48px; }
+
+.filter-row {
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;
+}
+.filter-btn {
+  font-size:11px;padding:6px 14px;border-radius:100px;
+  border:1px solid rgba(255,255,255,0.1);
+  color:rgba(180,200,240,0.55);
+  background:transparent;cursor:pointer;
+  font-family:'Space Grotesk',sans-serif;
+  transition:all 0.2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  border-color:rgba(126,200,255,0.5);
+  color:#7ec8ff;background:rgba(126,200,255,0.08);
+}
+
+.map-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:16px;
+}
+
+.map-card {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:14px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:all 0.3s;
+  animation:fadeUp 0.6s ease both;
+}
+.map-card:hover {
+  transform:translateY(-3px);
+  border-color:rgba(126,200,255,0.35);
+  box-shadow:0 8px 28px rgba(0,0,0,0.4);
+}
+
+.map-thumb {
+  width:100%;height:180px;
+  background:rgba(10,20,40,0.6);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.map-thumb img {
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.4s;
+}
+.map-card:hover .map-thumb img { transform:scale(1.04); }
+
+.map-thumb-placeholder {
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.map-thumb-placeholder .ph-icon { font-size:36px;opacity:0.4; }
+.map-thumb-placeholder .ph-text {
+  font-size:11px;color:rgba(180,200,240,0.3);
+  font-family:'Space Mono',monospace;letter-spacing:0.1em;
+}
+
+.map-type-badge {
+  position:absolute;top:10px;right:10px;
+  font-size:9px;padding:3px 9px;border-radius:100px;
+  font-family:'Space Mono',monospace;letter-spacing:0.1em;
+  text-transform:uppercase;font-weight:700;
+  backdrop-filter:blur(6px);
+}
+.badge-rdtr { background:rgba(126,200,255,0.25);color:#7ec8ff;border:1px solid rgba(126,200,255,0.3); }
+.badge-analisis { background:rgba(80,232,160,0.2);color:#50e8a0;border:1px solid rgba(80,232,160,0.3); }
+.badge-tematik { background:rgba(184,140,255,0.2);color:#b88cff;border:1px solid rgba(184,140,255,0.3); }
+.badge-topografi { background:rgba(255,200,80,0.2);color:#ffc850;border:1px solid rgba(255,200,80,0.3); }
+.badge-lainnya { background:rgba(255,130,130,0.2);color:#ff8282;border:1px solid rgba(255,130,130,0.3); }
+
+.map-info { padding:16px 18px; }
+.map-title {
+  font-family:'Syne',sans-serif;
+  font-size:14px;font-weight:700;color:#fff;
+  margin-bottom:5px;line-height:1.3;
+}
+.map-meta {
+  font-size:11px;color:rgba(180,200,240,0.45);
+  font-family:'Space Mono',monospace;
+  margin-bottom:10px;
+}
+.map-tags {
+  display:flex;gap:5px;flex-wrap:wrap;
+}
+.map-tag {
+  font-size:10px;padding:2px 8px;border-radius:100px;
+  border:1px solid rgba(255,255,255,0.1);
+  color:rgba(200,220,240,0.5);
+}
+
+/* ── LIGHTBOX ── */
+#lightbox {
+  display:none;
+  position:fixed;inset:0;z-index:500;
+  background:rgba(3,6,15,0.93);
+  align-items:center;justify-content:center;
+  flex-direction:column;gap:16px;
+  backdrop-filter:blur(12px);
+}
+#lightbox.open { display:flex; }
+#lightbox img {
+  max-width:90vw;max-height:78vh;
+  border-radius:8px;
+  border:1px solid rgba(126,200,255,0.2);
+  object-fit:contain;
+}
+#lightbox-info {
+  text-align:center;
+}
+#lightbox-title {
+  font-family:'Syne',sans-serif;
+  font-size:18px;font-weight:700;color:#fff;margin-bottom:4px;
+}
+#lightbox-meta {
+  font-size:12px;color:rgba(180,200,240,0.45);
+  font-family:'Space Mono',monospace;
+}
+#lightbox-close {
+  position:absolute;top:20px;right:24px;
+  font-size:24px;color:rgba(200,220,240,0.5);
+  cursor:pointer;background:none;border:none;
+  transition:color 0.2s;
+}
+#lightbox-close:hover { color:#7ec8ff; }
+#lightbox-prev, #lightbox-next {
+  position:absolute;top:50%;
+  font-size:22px;color:rgba(126,200,255,0.6);
+  cursor:pointer;background:rgba(3,6,15,0.7);
+  border:1px solid rgba(126,200,255,0.2);
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transform:translateY(-50%);transition:all 0.2s;
+}
+#lightbox-prev { left:20px; }
+#lightbox-next { right:20px; }
+#lightbox-prev:hover, #lightbox-next:hover {
+  color:#7ec8ff;border-color:rgba(126,200,255,0.6);
+  background:rgba(126,200,255,0.1);
+}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align:center;padding:60px 24px;
+  color:rgba(180,200,240,0.35);
+}
+.empty-icon { font-size:48px;margin-bottom:16px;opacity:0.4; }
+.empty-title {
+  font-family:'Syne',sans-serif;
+  font-size:16px;font-weight:700;color:rgba(200,220,240,0.5);
+  margin-bottom:8px;
+}
+.empty-hint { font-size:12px;font-family:'Space Mono',monospace; }
+
+/* ── DEMO MAPS (built-in samples) ── */
+.demo-note {
+  background:rgba(126,200,255,0.05);
+  border:1px solid rgba(126,200,255,0.15);
+  border-radius:10px;
+  padding:14px 18px;
+  font-size:12px;
+  color:rgba(180,200,240,0.55);
+  font-family:'Space Mono',monospace;
+  margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+
+@keyframes fadeUp {
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:600px){
+  .map-grid{grid-template-columns:1fr}
+  .container{padding:70px 16px 80px}
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<a href="index.html" class="back-btn">← Portfolio</a>
+
+<div id="lightbox">
+  <button id="lightbox-close">✕</button>
+  <button id="lightbox-prev">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <div id="lightbox-info">
+    <div id="lightbox-title"></div>
+    <div id="lightbox-meta"></div>
+  </div>
+  <button id="lightbox-next">›</button>
+</div>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">GIS & Kartografi</div>
+    <h1>Proyek Peta & Spasial</h1>
+    <div class="hero-sub">Analisis GIS · RDTR · Tata Ruang · Transportasi</div>
+    <div class="divider"></div>
+  </div>
+
+  <!-- UPLOAD ZONE -->
+  <div class="upload-section">
+    <div class="section-label">// Tambah Peta Baru</div>
+    <div class="upload-zone" id="dropZone">
+      <input type="file" id="fileInput" multiple accept="image/*,.pdf">
+      <span class="upload-icon">🗺️</span>
+      <div class="upload-title">Drag & drop file peta di sini</div>
+      <div class="upload-hint">atau klik untuk memilih file</div>
+      <div class="upload-formats">
+        <span class="fmt-badge">PNG</span>
+        <span class="fmt-badge">JPG</span>
+        <span class="fmt-badge">PDF</span>
+        <span class="fmt-badge">TIFF</span>
+        <span class="fmt-badge">WEBP</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOLDER TREE -->
+  <div class="folder-section" id="folderSection">
+    <div class="section-label">// Struktur Folder Terdeteksi</div>
+    <div class="folder-tree" id="folderTree">
+      <div class="tree-item folder">
+        <span class="tree-icon">📁</span>
+        <span>peta/</span>
+      </div>
+      <div class="tree-indent">
+        <div class="tree-item folder">
+          <span class="tree-icon">📁</span>
+          <span>rdtr/</span>
+          <span class="tree-size">— delineasi, pola ruang, struktur ruang</span>
+        </div>
+        <div class="tree-indent">
+          <div class="tree-item" onclick="filterByTag('RDTR')">
+            <span class="tree-icon">🗺️</span>
+            <span>batang_asai_delineasi.png</span>
+            <span class="tree-size">sample</span>
+          </div>
+          <div class="tree-item" onclick="filterByTag('RDTR')">
+            <span class="tree-icon">🗺️</span>
+            <span>pola_ruang_singkut.png</span>
+            <span class="tree-size">sample</span>
+          </div>
+        </div>
+        <div class="tree-item folder">
+          <span class="tree-icon">📁</span>
+          <span>analisis/</span>
+          <span class="tree-size">— bangkitan, aksesibilitas, buffer</span>
+        </div>
+        <div class="tree-indent">
+          <div class="tree-item" onclick="filterByTag('Analisis')">
+            <span class="tree-icon">🗺️</span>
+            <span>trip_generation_kitb.png</span>
+            <span class="tree-size">sample</span>
+          </div>
+        </div>
+        <div class="tree-item folder">
+          <span class="tree-icon">📁</span>
+          <span>tematik/</span>
+          <span class="tree-size">— kependudukan, penggunaan lahan</span>
+        </div>
+        <div class="tree-item folder">
+          <span class="tree-icon">📁</span>
+          <span>topografi/</span>
+          <span class="tree-size">— kontur, DEM, kemiringan lereng</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery-section">
+    <div class="section-label">// Galeri Peta</div>
+
+    <div class="demo-note">
+      ℹ️ Upload file peta di atas — akan otomatis tampil di galeri. Atau klik nama file di folder tree untuk filter.
+    </div>
+
+    <div class="filter-row" id="filterRow">
+      <button class="filter-btn active" onclick="filterMaps('semua',this)">Semua</button>
+      <button class="filter-btn" onclick="filterMaps('RDTR',this)">RDTR</button>
+      <button class="filter-btn" onclick="filterMaps('Analisis',this)">Analisis</button>
+      <button class="filter-btn" onclick="filterMaps('Tematik',this)">Tematik</button>
+      <button class="filter-btn" onclick="filterMaps('Topografi',this)">Topografi</button>
+      <button class="filter-btn" onclick="filterMaps('Lainnya',this)">Lainnya</button>
+    </div>
+
+    <div class="map-grid" id="mapGrid">
+      <!-- Sample cards shown on load -->
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── STAR FIELD ─────────────────────────────────────────────
+const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');
+let W,H,stars=[],meteors=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+function initStars(){stars=[];for(let i=0;i<180;i++){stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+0.2,alpha:Math.random()*0.7+0.2,speed:Math.random()*0.0005+0.0002,phase:Math.random()*Math.PI*2});}}
+function spawnMeteor(){meteors.push({x:Math.random()*W*1.2-W*0.1,y:-20,vx:3.5+Math.random()*2.5,vy:2.2+Math.random()*1.8,len:80+Math.random()*90,alpha:1,width:1+Math.random()*0.8});}
+function draw(t){ctx.clearRect(0,0,W,H);stars.forEach(s=>{const tw=0.5+0.5*Math.sin(t*s.speed*1000+s.phase);ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(200,220,255,${s.alpha*(0.6+0.4*tw)})`;ctx.fill();});meteors.forEach((m,i)=>{const l=Math.hypot(m.vx,m.vy);const tx=m.x-m.vx/l*m.len,ty=m.y-m.vy/l*m.len;const g=ctx.createLinearGradient(tx,ty,m.x,m.y);g.addColorStop(0,'rgba(180,220,255,0)');g.addColorStop(1,`rgba(255,255,255,${m.alpha})`);ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(m.x,m.y);ctx.strokeStyle=g;ctx.lineWidth=m.width;ctx.lineCap='round';ctx.stroke();m.x+=m.vx;m.y+=m.vy;m.alpha-=0.013;if(m.alpha<=0||m.x>W+100||m.y>H+100)meteors.splice(i,1);});requestAnimationFrame(draw);}
+resize();initStars();window.addEventListener('resize',()=>{resize();initStars();});
+setInterval(spawnMeteor,3200);setTimeout(spawnMeteor,600);
+requestAnimationFrame(draw);
+
+// ── MAP DATA STORE ──────────────────────────────────────────
+let allMaps = [
+  {
+    id:'s1', title:'Delineasi RDTR Batang Asai',
+    meta:'Sep–Des 2024 · Kabupaten Sarolangun',
+    type:'RDTR', tags:['QGIS','Delineasi','Sarolangun'],
+    src:null, isDemo:true,
+    color:'rgba(126,200,255,0.15)'
+  },
+  {
+    id:'s2', title:'Pola Ruang Perkotaan Singkut',
+    meta:'Sep–Des 2024 · Kabupaten Sarolangun',
+    type:'RDTR', tags:['ArcGIS','Pola Ruang','RDTR'],
+    src:null, isDemo:true,
+    color:'rgba(126,200,255,0.15)'
+  },
+  {
+    id:'s3', title:'Bangkitan Perjalanan KITB 2030',
+    meta:'Agt–Sep 2024 · Kabupaten Batang',
+    type:'Analisis', tags:['Trip Generation','KITB','Transportasi'],
+    src:null, isDemo:true,
+    color:'rgba(80,232,160,0.15)'
+  },
+  {
+    id:'s4', title:'Aksesibilitas Transportasi Publik',
+    meta:'Agt–Sep 2024 · Kabupaten Batang',
+    type:'Analisis', tags:['Buffer Analysis','Angkutan Umum'],
+    src:null, isDemo:true,
+    color:'rgba(80,232,160,0.15)'
+  },
+  {
+    id:'s5', title:'Peta Tipologi Terminal Leuwi Panjang',
+    meta:'2025 · Kota Bandung · Skripsi',
+    type:'Tematik', tags:['Tipologi','Terminal','Bandung'],
+    src:null, isDemo:true,
+    color:'rgba(184,140,255,0.15)'
+  }
+];
+
+let activeFilter = 'semua';
+let lightboxIdx = 0;
+let visibleMaps = [];
+
+const badgeClass = {
+  'RDTR':'badge-rdtr',
+  'Analisis':'badge-analisis',
+  'Tematik':'badge-tematik',
+  'Topografi':'badge-topografi',
+  'Lainnya':'badge-lainnya'
+};
+
+// ── RENDER GALLERY ──────────────────────────────────────────
+function renderGallery() {
+  const grid = document.getElementById('mapGrid');
+  visibleMaps = activeFilter === 'semua'
+    ? allMaps
+    : allMaps.filter(m => m.type === activeFilter);
+
+  if(visibleMaps.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+      <div class="empty-icon">🗺️</div>
+      <div class="empty-title">Belum ada peta di kategori ini</div>
+      <div class="empty-hint">Upload file peta di atas untuk menambahkan</div>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = visibleMaps.map((m, i) => `
+    <div class="map-card" style="animation-delay:${i*0.07}s" onclick="openLightbox(${i})">
+      <div class="map-thumb" style="background:${m.color || 'rgba(10,20,40,0.6)'}">
+        ${m.src
+          ? `<img src="${m.src}" alt="${m.title}">`
+          : `<div class="map-thumb-placeholder">
+               <div class="ph-icon">🗺️</div>
+               <div class="ph-text">${m.isDemo ? 'SAMPLE — Upload file asli' : 'Preview'}</div>
+             </div>`
+        }
+        <span class="map-type-badge ${badgeClass[m.type]||'badge-lainnya'}">${m.type}</span>
+      </div>
+      <div class="map-info">
+        <div class="map-title">${m.title}</div>
+        <div class="map-meta">${m.meta}</div>
+        <div class="map-tags">${m.tags.map(t=>`<span class="map-tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterMaps(cat, btn) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGallery();
+}
+
+function filterByTag(type) {
+  activeFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b=>{
+    b.classList.toggle('active', b.textContent===type);
+  });
+  renderGallery();
+}
+
+// ── LIGHTBOX ────────────────────────────────────────────────
+function openLightbox(idx) {
+  lightboxIdx = idx;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+}
+function updateLightbox() {
+  const m = visibleMaps[lightboxIdx];
+  const img = document.getElementById('lightbox-img');
+  img.src = m.src || '';
+  img.style.display = m.src ? 'block' : 'none';
+  document.getElementById('lightbox-title').textContent = m.title;
+  document.getElementById('lightbox-meta').textContent = m.meta + ' · ' + m.type;
+}
+document.getElementById('lightbox-close').onclick = () =>
+  document.getElementById('lightbox').classList.remove('open');
+document.getElementById('lightbox-prev').onclick = () => {
+  lightboxIdx = (lightboxIdx - 1 + visibleMaps.length) % visibleMaps.length;
+  updateLightbox();
+};
+document.getElementById('lightbox-next').onclick = () => {
+  lightboxIdx = (lightboxIdx + 1) % visibleMaps.length;
+  updateLightbox();
+};
+document.getElementById('lightbox').addEventListener('click', e => {
+  if(e.target.id==='lightbox') document.getElementById('lightbox').classList.remove('open');
+});
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lightbox');
+  if(!lb.classList.contains('open')) return;
+  if(e.key==='Escape') lb.classList.remove('open');
+  if(e.key==='ArrowLeft'){lightboxIdx=(lightboxIdx-1+visibleMaps.length)%visibleMaps.length;updateLightbox();}
+  if(e.key==='ArrowRight'){lightboxIdx=(lightboxIdx+1)%visibleMaps.length;updateLightbox();}
+});
+
+// ── FILE UPLOAD & AUTO-DETECT ───────────────────────────────
+function detectType(filename) {
+  const f = filename.toLowerCase();
+  if(f.includes('rdtr')||f.includes('pola_ruang')||f.includes('delineas')||f.includes('struktur_ruang')) return 'RDTR';
+  if(f.includes('analisis')||f.includes('bangkitan')||f.includes('tarikan')||f.includes('buffer')||f.includes('trip')||f.includes('aksesi')) return 'Analisis';
+  if(f.includes('tematik')||f.includes('penduduk')||f.includes('lahan')||f.includes('tipologi')) return 'Tematik';
+  if(f.includes('topo')||f.includes('kontur')||f.includes('dem')||f.includes('lereng')||f.includes('ketinggian')) return 'Topografi';
+  return 'Lainnya';
+}
+
+function addToTree(name, type) {
+  const tree = document.getElementById('folderTree');
+  const folderMap = {
+    'RDTR':'rdtr/','Analisis':'analisis/','Tematik':'tematik/','Topografi':'topografi/','Lainnya':'lainnya/'
+  };
+  const folder = folderMap[type]||'lainnya/';
+  const item = document.createElement('div');
+  item.className='tree-indent';
+  item.innerHTML=`<div class="tree-item" onclick="filterByTag('${type}')">
+    <span class="tree-icon">🗺️</span>
+    <span>${name}</span>
+    <span class="tree-size">baru ditambahkan</span>
+  </div>`;
+  tree.appendChild(item);
+}
+
+function handleFiles(files) {
+  Array.from(files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const type = detectType(file.name);
+      const newMap = {
+        id: 'u_' + Date.now() + Math.random(),
+        title: file.name.replace(/\.[^.]+$/,'').replace(/[_-]/g,' '),
+        meta: 'Diunggah · ' + new Date().toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}),
+        type, tags: [type, 'Upload'],
+        src: e.target.result,
+        isDemo: false,
+        color: 'rgba(126,200,255,0.15)'
+      };
+      allMaps.unshift(newMap);
+      addToTree(file.name, type);
+      renderGallery();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+
+fileInput.onchange = e => handleFiles(e.target.files);
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  handleFiles(e.dataTransfer.files);
+});
+
+// ── INIT ────────────────────────────────────────────────────
+renderGallery();
+</script>
+</body>
+</html>
