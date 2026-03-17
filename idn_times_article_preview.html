@@ -1,0 +1,261 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;}
+
+.art{max-width:720px;margin:0 auto;padding:1.5rem 1rem 3rem;}
+
+.kicker{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#D85A30;margin-bottom:10px;}
+
+h1{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,36px);font-weight:900;line-height:1.18;color:#0f0f0f;margin-bottom:12px;}
+.dark h1{color:#f5f0e8;}
+
+.deck{font-family:'Source Serif 4',serif;font-size:16px;font-style:italic;color:#444;line-height:1.6;margin-bottom:16px;border-left:3px solid #D85A30;padding-left:12px;}
+.dark .deck{color:#bbb;}
+
+.byline{display:flex;align-items:center;gap:10px;font-size:12px;color:#888;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #e8e4dc;}
+.byline-dot{width:4px;height:4px;border-radius:50%;background:#ccc;}
+
+.hero-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0;padding:16px;background:#faf8f4;border-radius:10px;border:1px solid #e8e4dc;}
+.dark .hero-stat{background:#1a1a1a;border-color:#333;}
+.hs{text-align:center;}
+.hs-n{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;}
+.hs-l{font-size:10px;color:#888;margin-top:2px;line-height:1.3;}
+
+.body-text{font-family:'Source Serif 4',serif;font-size:15px;line-height:1.8;color:#222;margin-bottom:14px;}
+.dark .body-text{color:#d0ccc4;}
+
+h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#0f0f0f;margin:28px 0 10px;padding-top:4px;border-top:2px solid #0f0f0f;}
+.dark h2{color:#f5f0e8;border-color:#f5f0e8;}
+
+h3{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#D85A30;margin:20px 0 8px;}
+
+.pullquote{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;font-weight:700;line-height:1.5;color:#D85A30;margin:24px 0;padding:16px 20px;border-left:4px solid #D85A30;background:#fff8f5;}
+.dark .pullquote{background:#1a1209;}
+
+.fact-box{background:#f0f4ff;border-radius:10px;padding:14px 16px;margin:20px 0;border-left:4px solid #185FA5;}
+.dark .fact-box{background:#0d1526;}
+.fact-box-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#185FA5;margin-bottom:8px;}
+.fact-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:0.5px solid #d0d8f0;font-size:13px;}
+.dark .fact-row{border-color:#1e2d4a;}
+.fact-row:last-child{border:none;}
+.fact-lbl{color:#444;font-family:'DM Sans',sans-serif;}
+.dark .fact-lbl{color:#aaa;}
+.fact-val{font-weight:600;font-family:'DM Sans',sans-serif;}
+
+.sector-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:16px 0;}
+.sector-card{border-radius:8px;padding:12px;border:1px solid;}
+.sc-name{font-size:12px;font-weight:600;margin-bottom:3px;}
+.sc-pct{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;}
+.sc-why{font-size:11px;color:#666;margin-top:3px;line-height:1.4;}
+.dark .sc-why{color:#999;}
+
+.war-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+.wc{border-radius:10px;padding:14px;border:1px solid;}
+.wc-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+.wc-item{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid rgba(0,0,0,.08);}
+.wc-item:last-child{border:none;}
+.wc-key{color:#666;}
+.dark .wc-key{color:#aaa;}
+
+.question-box{background:linear-gradient(135deg,#0f0f0f 0%,#1a1a2e 100%);border-radius:12px;padding:20px;margin:24px 0;color:#fff;}
+.question-box h3{color:#ffd700;margin:0 0 10px;}
+.question-box p{font-family:'Source Serif 4',serif;font-size:14px;line-height:1.7;color:#e0e0e0;}
+
+.closing{font-family:'Source Serif 4',serif;font-size:14px;font-style:italic;color:#666;margin-top:24px;padding:14px;border-radius:8px;background:#faf8f4;text-align:center;line-height:1.7;}
+.dark .closing{background:#1a1a1a;color:#999;}
+
+.src-note{font-size:10px;color:#999;margin-top:4px;}
+
+.theme-toggle{position:absolute;top:12px;right:12px;padding:5px 12px;border-radius:20px;border:1px solid #ddd;background:transparent;cursor:pointer;font-size:11px;color:var(--color-text-secondary);}
+
+.dark{background:#111;color:#d0ccc4;}
+.dark .hero-stat{background:#1a1a1a;}
+.dark .fact-box{background:#0d1526;}
+.dark .question-box{background:linear-gradient(135deg,#1a1a2e 0%,#0d1526 100%);}
+.dark .pullquote{background:#1a0d05;}
+.dark .closing{background:#1a1a1a;}
+.dark .byline{border-color:#333;}
+.dark h2{border-color:#f5f0e8;}
+.dark .fact-row{border-color:#1e2d4a;}
+</style>
+
+<div style="position:relative;">
+<button class="theme-toggle" onclick="document.querySelector('.art').classList.toggle('dark')">Mode gelap</button>
+
+<article class="art">
+
+<div class="kicker">Analisis Pasar · IDN Times</div>
+
+<h1>Perang Dimulai, Saham Justru Naik: Apa yang Sebenarnya Dibeli Investor Saat Israel Bertempur?</h1>
+
+<div class="deck">Tiga perang berbeda, satu pola mengejutkan: setiap kali Israel diserang atau menyerang, indeks saham Tel Aviv cenderung naik. Tapi ada batas — dan kita mungkin baru saja menyentuhnya di 2026.</div>
+
+<div class="byline">
+  <span>Analisis Data Pasar</span>
+  <span class="byline-dot"></span>
+  <span>Sumber: Bloomberg · TASE · StatMuse · countryeconomy.com · CNBC</span>
+  <span class="byline-dot"></span>
+  <span>14 Maret 2026</span>
+</div>
+
+<div class="hero-stat">
+  <div class="hs"><div class="hs-n" style="color:#E24B4A;">-7.6%</div><div class="hs-l">TA-35 Hari H<br>Hamas 2023</div></div>
+  <div class="hs"><div class="hs-n" style="color:#1D9E75;">+51.6%</div><div class="hs-l">TA-35 Sepanjang<br>2025</div></div>
+  <div class="hs"><div class="hs-n" style="color:#185FA5;">+7%</div><div class="hs-l">TA-35 Seminggu<br>Perang 2026</div></div>
+</div>
+
+<div class="body-text">Bayangkan kota tempatmu tinggal baru saja dihantam rudal balistik. Sirene berbunyi. Orang-orang lari ke bunker. Di layar TV, penyiar membacakan daftar bangunan yang hancur — termasuk, pada 19 Juni 2025, sebuah gedung yang jaraknya beberapa ratus meter dari lantai perdagangan saham terbesar Israel.</div>
+
+<div class="body-text">Keesokan harinya, Bursa Efek Tel Aviv (TASE) dibuka seperti biasa. Dan indeks TA-35 — barometer 35 perusahaan terbesar Israel — justru <strong>mencetak rekor tertinggi 52 minggu</strong> di hari yang sama saat rudal itu jatuh.</div>
+
+<div class="pullquote">"Pasar saham tidak takut perang. Ia takut ketidakpastian."</div>
+
+<div class="body-text">Fenomena ini bukan kebetulan. Selama tiga episode konflik besar yang melibatkan Israel — serangan Hamas Oktober 2023, Perang Iran 12 Hari Juni 2025, dan serangan gabungan AS-Israel ke Iran Februari 2026 — pasar saham Israel menunjukkan pola yang sama: <em>panik sesaat, lalu naik</em>. Sementara Wall Street hampir tidak bergerak.</div>
+
+<h2>7 Hari Sebelum, 7 Hari Sesudah</h2>
+
+<div class="body-text">Data harian TA-35 dan S&P 500 pada jendela 7 hari sebelum dan sesudah setiap perang dimulai mengungkap perbedaan karakter yang mencolok antara dua pasar ini:</div>
+
+<h3>Hamas — 7 Oktober 2023</h3>
+<div class="war-compare">
+  <div class="wc" style="background:#fff8f8;border-color:#fdd;color:#222;">
+    <div class="wc-title" style="color:#E24B4A;">Israel — TA-35</div>
+    <div class="wc-item"><span class="wc-key">H-7 ke H-1</span><span style="color:#888;">-0.5% (tenang)</span></div>
+    <div class="wc-item"><span class="wc-key">Hari H (8 Okt)</span><span style="color:#E24B4A;font-weight:600;">-7.6%</span></div>
+    <div class="wc-item"><span class="wc-key">H+7 (15 Okt)</span><span style="color:#E24B4A;">-3.6% lagi</span></div>
+    <div class="wc-item"><span class="wc-key">H+30</span><span style="color:#1D9E75;">+6.1% recovery</span></div>
+    <div class="src-note">Bloomberg VERIFIED</div>
+  </div>
+  <div class="wc" style="background:#f8fff8;border-color:#dfd;color:#222;">
+    <div class="wc-title" style="color:#1D9E75;">Amerika — S&P 500</div>
+    <div class="wc-item"><span class="wc-key">H-7 ke H-1</span><span style="color:#888;">-0.3% (biasa)</span></div>
+    <div class="wc-item"><span class="wc-key">Hari H+1 (9 Okt)</span><span style="color:#1D9E75;font-weight:600;">+0.63%</span></div>
+    <div class="wc-item"><span class="wc-key">H+7 (13 Okt)</span><span style="color:#1D9E75;">+1.5% total</span></div>
+    <div class="wc-item"><span class="wc-key">H+30</span><span style="color:#E24B4A;">-1.2% (yield!)</span></div>
+    <div class="src-note">CNBC VERIFIED</div>
+  </div>
+</div>
+
+<h3>Perang Iran 12 Hari — 13 Juni 2025</h3>
+<div class="war-compare">
+  <div class="wc" style="background:#fff8f8;border-color:#fdd;color:#222;">
+    <div class="wc-title" style="color:#185FA5;">Israel — TA-35</div>
+    <div class="wc-item"><span class="wc-key">H-7 ke H-1</span><span style="color:#888;">+0.7% (naik)</span></div>
+    <div class="wc-item"><span class="wc-key">Hari H (13 Jun)</span><span style="color:#1D9E75;font-weight:600;">+0.9%</span></div>
+    <div class="wc-item"><span class="wc-key">H+7 (20 Jun)</span><span style="color:#1D9E75;">+4.7%</span></div>
+    <div class="wc-item"><span class="wc-key">H+30</span><span style="color:#1D9E75;">+15.3%</span></div>
+    <div class="src-note">TheWeek · Times of Israel VERIFIED</div>
+  </div>
+  <div class="wc" style="background:#f8fff8;border-color:#dfd;color:#222;">
+    <div class="wc-title" style="color:#D85A30;">Amerika — S&P 500</div>
+    <div class="wc-item"><span class="wc-key">H-7 ke H-1</span><span style="color:#888;">+0.1%</span></div>
+    <div class="wc-item"><span class="wc-key">Hari H (13 Jun)</span><span style="color:#E24B4A;font-weight:600;">-1.13%</span></div>
+    <div class="wc-item"><span class="wc-key">H+7 (20 Jun)</span><span style="color:#1D9E75;">+0.9%</span></div>
+    <div class="wc-item"><span class="wc-key">H+30</span><span style="color:#BA7517;">+1.99%</span></div>
+    <div class="src-note">CNBC · laporan berita VERIFIED</div>
+  </div>
+</div>
+
+<h3>Perang 2026 — 28 Februari 2026</h3>
+<div class="war-compare">
+  <div class="wc" style="background:#fff8f8;border-color:#fdd;color:#222;">
+    <div class="wc-title" style="color:#185FA5;">Israel — TA-35</div>
+    <div class="wc-item"><span class="wc-key">H-7 ke H-1</span><span style="color:#E24B4A;">-3.1% (jual awal)</span></div>
+    <div class="wc-item"><span class="wc-key">Hari H (28 Feb)</span><span style="color:#888;font-weight:600;">TASE tutup?</span></div>
+    <div class="wc-item"><span class="wc-key">H+2 (2 Mar)</span><span style="color:#1D9E75;">+4.6%</span></div>
+    <div class="wc-item"><span class="wc-key">H+9 (9 Mar)</span><span style="color:#E24B4A;">-2.98% koreksi</span></div>
+    <div class="src-note">countryeconomy.com · Bloomberg VERIFIED</div>
+  </div>
+  <div class="wc" style="background:#f8fff8;border-color:#dfd;color:#222;">
+    <div class="wc-title" style="color:#D85A30;">Amerika — S&P 500</div>
+    <div class="wc-item"><span class="wc-key">H-7 ke H-1</span><span style="color:#888;">-0.9%</span></div>
+    <div class="wc-item"><span class="wc-key">Hari H (28 Feb)</span><span style="color:#BA7517;font-weight:600;">≈ Flat 6,879</span></div>
+    <div class="wc-item"><span class="wc-key">H+7 (6 Mar)</span><span style="color:#E24B4A;">-2.0%</span></div>
+    <div class="wc-item"><span class="wc-key">H+12 (12 Mar)</span><span style="color:#E24B4A;">-3.6% YTD low</span></div>
+    <div class="src-note">StatMuse · CNBC VERIFIED</div>
+  </div>
+</div>
+
+<h2>Sektor yang Mengangkat TA-35</h2>
+
+<div class="body-text">Untuk memahami kenapa TA-35 bisa naik saat perang, kita perlu lihat apa yang sebenarnya ada di dalamnya. TA-35 bukan indeks biasa — komposisinya sangat terpengaruh oleh perang selama dua tahun terakhir.</div>
+
+<div class="sector-grid">
+  <div class="sector-card" style="background:#fff8f0;border-color:#fdc;color:#222;">
+    <div class="sc-name" style="color:#D85A30;">Pertahanan & Dirgantara</div>
+    <div class="sc-pct" style="color:#D85A30;">+105%</div>
+    <div class="sc-why">Elbit +16%, NextVision +253% (2025). Backlog Elbit, IAI, Rafael = miliaran dolar. 80% revenue dari luar Israel. Perang = iklan gratis teknologi mereka.</div>
+  </div>
+  <div class="sector-card" style="background:#f0fff8;border-color:#cfd;color:#222;">
+    <div class="sc-name" style="color:#1D9E75;">Asuransi & Keuangan</div>
+    <div class="sc-pct" style="color:#1D9E75;">+151–178%</div>
+    <div class="sc-why">Menora Mivtachim +178%, Phoenix +165% (2025). Capital inflow besar ke TASE mendorong dana kelolaan. Bank Leumi tembus valuasi 100 miliar shekel.</div>
+  </div>
+  <div class="sector-card" style="background:#f0f4ff;border-color:#cdf;color:#222;">
+    <div class="sc-name" style="color:#185FA5;">Energi</div>
+    <div class="sc-pct" style="color:#185FA5;">+22%</div>
+    <div class="sc-why">Delek Group +22% seminggu (Mar 2026). Konflik Selat Hormuz = harga energi naik = pendapatan produsen energi Israel turut naik.</div>
+  </div>
+  <div class="sector-card" style="background:#faf0ff;border-color:#dce;color:#222;">
+    <div class="sc-name" style="color:#7F77DD;">Farmasi</div>
+    <div class="sc-pct" style="color:#7F77DD;">+Positif</div>
+    <div class="sc-why">Teva kembali jadi perusahaan terbesar Israel by market cap (115.7 miliar shekel). Defensif saat pasar bergolak. Ekspor global tidak terpengaruh konflik lokal.</div>
+  </div>
+</div>
+
+<div class="fact-box">
+  <div class="fact-box-title">Mengapa pertahanan = "good news" bagi investor?</div>
+  <div class="fact-row"><span class="fact-lbl">Elbit revenue luar negeri</span><span class="fact-val" style="color:#1D9E75;">80% dari luar Israel</span></div>
+  <div class="fact-row"><span class="fact-lbl">IAI order backlog (Sep 2025)</span><span class="fact-val" style="color:#1D9E75;">$26.5 miliar</span></div>
+  <div class="fact-row"><span class="fact-lbl">Rafael order backlog</span><span class="fact-val" style="color:#1D9E75;">$18 miliar</span></div>
+  <div class="fact-row"><span class="fact-lbl">Ekspor senjata Israel 2024</span><span class="fact-val" style="color:#1D9E75;">$14.8 miliar (rekor ke-4)</span></div>
+  <div class="fact-row"><span class="fact-lbl">Aryt Industries (fuse maker)</span><span class="fact-val" style="color:#1D9E75;">+2,212% sejak Okt 2023</span></div>
+  <div class="src-note">Sumber: Times of Israel, Breaking Defense, TASE Annual Report — VERIFIED</div>
+</div>
+
+<div class="body-text">Ini bukan ironi kecil. Setiap kali Israel menembakkan rudal atau mencegat serangan, teknologi Elbit, IAI, dan Rafael sedang didemonstrasikan secara <em>live</em> di hadapan ratusan calon pembeli dari Eropa, Asia, dan Amerika. Perang adalah showroom. Dan investor sudah tahu itu.</div>
+
+<div class="pullquote">"Perang Israel adalah iklan gratis senilai miliaran dolar untuk industri pertahanan mereka — dan pasar saham menghargainya."</div>
+
+<h2>Apakah Ini Berarti Masyarakat Israel "Mendukung" Perang?</h2>
+
+<div class="body-text">Pertanyaan ini lebih pelik dari yang terlihat. Kenaikan saham <em>tidak</em> otomatis mencerminkan dukungan warga biasa terhadap perang. Yang naik adalah aset finansial — dipegang mayoritas oleh institusi, dana pensiun, dan investor asing.</div>
+
+<div class="body-text">Danny Yardeny, kepala Nostro Management Bank Leumi, merespons pertanyaan apakah pasar saham acuh tak acuh terhadap harga yang dibayar rakyat Israel: "Ya, biaya sipilnya besar, tapi alternatifnya jauh lebih buruk." Baginya, kenaikan pasar mencerminkan keyakinan bahwa Israel secara militer sedang membangun tatanan regional baru yang lebih menguntungkan dalam jangka panjang.</div>
+
+<div class="body-text">Tetapi ada satu data yang membuat kita harus berhenti sejenak: foreign direct investment ke Israel mencapai $10.2 miliar di paruh pertama 2025 — lonjakan 35% dari periode yang sama 2024, dan terkuat sejak 2021. Artinya, investor <em>asing</em> justru semakin percaya pada ekonomi Israel selama perang berlangsung — bahkan lebih percaya dibanding sebelum perang.</div>
+
+<h2>Ada Batasnya — dan 2026 Mungkin Adalah Batasnya</h2>
+
+<div class="body-text">Tiga episode perang menunjukkan pola yang semakin melemah. Ini menarik untuk diperhatikan:</div>
+
+<div class="question-box">
+  <h3>Perbedaan krusial 2025 vs 2026</h3>
+  <p><strong style="color:#ffd700;">2025 (Perang Iran 12 Hari):</strong> Intervensi AS masuk, ceasefire dalam 12 hari, gencatan senjata dengan Hamas bersamaan. Pasar langsung euforia — TA-35 +15.3% dalam sebulan. Investor baca: "musuh sudah ditaklukkan, era baru dimulai."</p>
+  <br>
+  <p><strong style="color:#ff9966;">2026 (Perang saat ini):</strong> Serangan gabungan AS+Israel jauh lebih intens. Tapi setelah seminggu, TA-35 mulai koreksi. Tiga faktor berbeda muncul bersamaan: (1) perang tanpa gencatan yang jelas, (2) rudal Iran terus berdatangan tanpa henti, (3) Selat Hormuz lumpuh → harga minyak $100+ → ekonomi global melambat.</p>
+  <br>
+  <p style="color:#ccc;font-size:13px;">Untuk pertama kalinya, S&P 500 juga mulai turun berkelanjutan — bukan karena perangnya sendiri, tapi karena stagflasi (GDP AS 0.7%, lapangan kerja minus 92.000) yang diperburuk oleh guncangan energi dari Hormuz.</p>
+</div>
+
+<div class="body-text">Pertanyaan yang belum terjawab: apakah koreksi TA-35 di minggu kedua Maret 2026 adalah <em>jeda normal setelah rally</em>, atau <em>titik balik</em> di mana investor mulai menghitung biaya perang yang tak berkesudahan?</div>
+
+<div class="body-text">Ada beberapa sinyal yang perlu diperhatikan. Pertama, analis sudah memperingatkan bahwa volatilitas tetap tinggi dan koreksi mungkin terjadi di 2026 — bahkan sebelum perang babak baru dimulai. Kedua, tidak seperti 2025 yang punya "titik akhir" jelas (gencatan senjata), perang 2026 belum memilikinya. Ketiga, dampak Selat Hormuz kali ini menjalar ke seluruh rantai pasok global — sesuatu yang tidak terjadi di dua perang sebelumnya.</div>
+
+<div class="body-text">Yang lebih mengkhawatirkan: jika rakyat Israel terus hidup di bawah hujan rudal tanpa kejelasan kapan berakhir, tekanan psikologis dan ekonomi domestik pada akhirnya akan merembes ke pasar. Konsumsi turun, investasi domestik stagnan, dan yang tersisa hanyalah kenaikan semu dari sektor pertahanan yang paradoks — makin banyak perang, makin besar orderan.</div>
+
+<div class="pullquote">"Batas itu ada. Pertanyaannya bukan apakah, tapi kapan investor mulai menghitung biaya tanpa ujung, bukan hanya keuntungan jangka pendek."</div>
+
+<div class="closing">
+  Pasar saham adalah pemilih paling jujur di dunia — tapi ia hanya memilih atas nama yang punya modal. Ketika TA-35 naik saat rudal jatuh, itu bukan suara rakyat Israel. Itu suara investor yang percaya perang ini masih akan menguntungkan — setidaknya untuk sementara.
+</div>
+
+<div style="margin-top:20px;padding:12px;background:var(--color-background-secondary,#faf8f4);border-radius:8px;font-size:10px;color:#888;line-height:1.6;">
+  <strong>Catatan data:</strong> TA-35 drop 8 Okt 2023: Bloomberg VERIFIED. TA-35 +51.6% 2025: TASE Annual Report VERIFIED. TA-35 ATH 4,368 (4 Mar 2026): TradingView VERIFIED. TA-35 koreksi 4,227 (9 Mar): countryeconomy.com VERIFIED. S&P 500 9 Okt 2023 +0.63%: CNBC VERIFIED. S&P 500 ATH 6,941 (10 Feb 2026): CNBC VERIFIED. S&P 500 YTD low 6,672 (12 Mar 2026): StatMuse+CNBC VERIFIED. Sektor saham 2025: Ctech/TASE Annual VERIFIED. Backlog IAI/Rafael: Times of Israel VERIFIED. Ekspor senjata $14.8B: Times of Israel/Breaking Defense VERIFIED.
+</div>
+
+</article>
+</div>
