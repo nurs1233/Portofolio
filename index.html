@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portofolio — Ripan Nursalam</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0;padding:0;box-sizing:border-box; }
+body {
+  background:#03060f;
+  color:#e8eaf6;
+  font-family:'Space Grotesk',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+canvas#stars {
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
+  z-index:0;pointer-events:none;
+}
+.container {
+  position:relative;z-index:2;
+  max-width:900px;margin:0 auto;
+  padding:60px 24px 80px;
+}
+
+/* HERO */
+.hero {
+  text-align:center;margin-bottom:64px;
+  animation:fadeUp 1s ease both;
+}
+.hero-badge {
+  display:inline-block;
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  color:#7ec8ff;border:1px solid rgba(126,200,255,0.3);
+  padding:6px 16px;border-radius:100px;margin-bottom:24px;
+  background:rgba(126,200,255,0.06);
+}
+.hero h1 {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.4rem,6vw,4rem);
+  font-weight:800;line-height:1.1;
+  background:linear-gradient(135deg,#ffffff 30%,#7ec8ff 70%,#b892ff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:16px;
+}
+.hero-sub {
+  font-size:15px;color:rgba(200,210,240,0.6);
+  font-weight:300;letter-spacing:0.04em;
+}
+.divider {
+  width:60px;height:1px;
+  background:linear-gradient(90deg,transparent,#7ec8ff,transparent);
+  margin:28px auto;
+}
+
+/* PROFILE CARD */
+.profile-card {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(126,200,255,0.15);
+  border-radius:20px;padding:28px 32px;
+  margin-bottom:48px;
+  display:flex;align-items:center;gap:24px;
+  animation:fadeUp 1s ease 0.2s both;
+  backdrop-filter:blur(10px);
+}
+.avatar {
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,#1a2a5e,#3b5bc9);
+  border:2px solid rgba(126,200,255,0.4);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:22px;font-weight:800;
+  color:#7ec8ff;flex-shrink:0;
+}
+.profile-info h2 {
+  font-family:'Syne',sans-serif;font-size:18px;font-weight:700;
+  color:#fff;margin-bottom:4px;
+}
+.profile-info p {
+  font-size:13px;color:rgba(180,200,240,0.6);margin-bottom:10px;
+}
+.tags { display:flex;flex-wrap:wrap;gap:6px; }
+.tag {
+  font-size:11px;padding:3px 10px;border-radius:100px;
+  border:1px solid rgba(126,200,255,0.25);
+  color:#7ec8ff;background:rgba(126,200,255,0.07);
+}
+
+/* SECTION LABEL */
+.section-label {
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(180,200,240,0.45);margin-bottom:20px;padding-left:2px;
+}
+
+/* GRID */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:16px;margin-bottom:48px;
+}
+
+.card {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;padding:24px 22px;
+  cursor:pointer;
+  transition:all 0.3s;
+  text-decoration:none;color:inherit;
+  display:block;
+  animation:fadeUp 0.8s ease both;
+  position:relative;overflow:hidden;
+}
+.card:hover {
+  transform:translateY(-4px);
+  border-color:var(--accent,rgba(126,200,255,0.4));
+  background:rgba(255,255,255,0.055);
+  box-shadow:0 8px 32px rgba(0,0,0,0.35), 0 0 0 1px var(--accent,rgba(126,200,255,0.2));
+}
+
+.card-status {
+  position:absolute;top:14px;right:14px;
+  font-size:9px;padding:3px 8px;border-radius:100px;
+  font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+}
+.status-ready {
+  background:rgba(80,232,160,0.15);color:#50e8a0;
+  border:1px solid rgba(80,232,160,0.3);
+}
+.status-soon {
+  background:rgba(255,200,80,0.12);color:#ffc850;
+  border:1px solid rgba(255,200,80,0.25);
+}
+
+.card-icon {
+  width:44px;height:44px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;margin-bottom:14px;
+  background:var(--icon-bg,rgba(126,200,255,0.12));
+}
+.card h3 {
+  font-family:'Syne',sans-serif;font-size:15px;font-weight:700;
+  color:#fff;margin-bottom:6px;line-height:1.3;
+}
+.card p {
+  font-size:12.5px;color:rgba(180,200,240,0.5);
+  line-height:1.55;margin-bottom:14px;
+}
+.card-footer {
+  display:flex;align-items:center;justify-content:space-between;
+}
+.card-count {
+  font-size:11px;color:rgba(180,200,240,0.35);letter-spacing:0.05em;
+}
+.card-arrow {
+  font-size:16px;color:var(--accent-light,#7ec8ff);
+  opacity:0.6;transition:all 0.3s;
+}
+.card:hover .card-arrow { opacity:1;transform:translateX(3px); }
+
+/* CONTACT STRIP */
+.contact-strip {
+  background:rgba(126,200,255,0.05);
+  border:1px solid rgba(126,200,255,0.15);
+  border-radius:16px;padding:22px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+  animation:fadeUp 0.8s ease 0.5s both;
+}
+.contact-left h3 {
+  font-family:'Syne',sans-serif;font-size:15px;font-weight:700;
+  color:#fff;margin-bottom:4px;
+}
+.contact-left p { font-size:12.5px;color:rgba(180,200,240,0.5); }
+.contact-links { display:flex;gap:10px; }
+.contact-btn {
+  font-size:12px;padding:8px 16px;border-radius:100px;
+  border:1px solid rgba(126,200,255,0.3);
+  color:#7ec8ff;background:rgba(126,200,255,0.08);
+  cursor:pointer;transition:all 0.25s;
+  font-family:'Space Grotesk',sans-serif;
+  text-decoration:none;
+  display:flex;align-items:center;gap:6px;
+}
+.contact-btn:hover {
+  background:rgba(126,200,255,0.18);
+  border-color:rgba(126,200,255,0.6);
+}
+
+@keyframes fadeUp {
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.card:nth-child(1){animation-delay:0.10s}
+.card:nth-child(2){animation-delay:0.18s}
+.card:nth-child(3){animation-delay:0.26s}
+.card:nth-child(4){animation-delay:0.34s}
+.card:nth-child(5){animation-delay:0.42s}
+.card:nth-child(6){animation-delay:0.50s}
+.card:nth-child(7){animation-delay:0.58s}
+.card:nth-child(8){animation-delay:0.66s}
+
+@media(max-width:600px){
+  .profile-card{flex-direction:column;text-align:center}
+  .tags{justify-content:center}
+  .contact-strip{flex-direction:column;text-align:center}
+  .contact-links{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Portfolio Index</div>
+    <h1>Ripan Nursalam</h1>
+    <div class="hero-sub">Perencanaan Wilayah & Kota · ITENAS Bandung</div>
+    <div class="divider"></div>
+  </div>
+
+  <!-- PROFILE CARD -->
+  <div class="profile-card">
+    <div class="avatar">RN</div>
+    <div class="profile-info">
+      <h2>Ripan Nursalam</h2>
+      <p>Mahasiswa tingkat akhir · IPK 3.34 · Selesai Skripsi (Sem 9)</p>
+      <div class="tags">
+        <span class="tag">GIS & Spasial</span>
+        <span class="tag">Transportasi</span>
+        <span class="tag">RDTR</span>
+        <span class="tag">Tata Ruang</span>
+        <span class="tag">Urban Planning</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN SECTIONS -->
+  <div class="section-label">Navigasi Portofolio</div>
+
+  <div class="grid">
+
+    <!-- 1. PENGALAMAN & ORGANISASI — gabungan -->
+    <a href="pengalaman_organisasi.html" class="card" style="--accent:rgba(184,140,255,0.45);--icon-bg:rgba(184,140,255,0.12);">
+      <span class="card-status status-soon">Segera</span>
+      <div class="card-icon">🧭</div>
+      <h3>Pengalaman & Organisasi</h3>
+      <p>Magang ATR/BPN, Bappedalitbang Batang, PMM Bosowa, HMPL ITENAS, dan OSIS.</p>
+      <div class="card-footer">
+        <span class="card-count">3 Magang · 2 Organisasi</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 2. GIS — READY -->
+    <a href="gis_peta.html" class="card" style="--accent:rgba(80,220,160,0.45);--icon-bg:rgba(80,220,160,0.12);">
+      <span class="card-status status-ready">Tersedia</span>
+      <div class="card-icon">🗺️</div>
+      <h3>Proyek GIS & Peta</h3>
+      <p>Analisis spasial, pemetaan RDTR, visualisasi data geografis. Auto-detect dari GitHub.</p>
+      <div class="card-footer">
+        <span class="card-count">QGIS · ArcGIS · Spasial</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 3. SKRIPSI — READY -->
+    <a href="Skripsi.html" class="card" style="--accent:rgba(255,130,130,0.45);--icon-bg:rgba(255,130,130,0.12);">
+      <span class="card-status status-ready">Tersedia</span>
+      <div class="card-icon">🔬</div>
+      <h3>Skripsi & Penelitian</h3>
+      <p>Evaluasi Terminal Leuwi Panjang — Tipologi & Perencanaan Transportasi Kota Bandung.</p>
+      <div class="card-footer">
+        <span class="card-count">Selesai Sem 9</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 4. KAJIAN TRANSPORTASI — READY -->
+    <a href="kajian_transportasi_batang_detail.html" class="card" style="--accent:rgba(255,190,80,0.45);--icon-bg:rgba(255,190,80,0.12);">
+      <span class="card-status status-ready">Tersedia</span>
+      <div class="card-icon">🚌</div>
+      <h3>Kajian Transportasi KITB</h3>
+      <p>Analisis bangkitan tarikan & aksesibilitas di Kawasan Industri Terpadu Batang. Magang Bappedalitbang.</p>
+      <div class="card-footer">
+        <span class="card-count">Agt–Sep 2024 · Batang</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 5. DESAIN & VISUAL — auto-detect GitHub -->
+    <a href="desain_visual.html" class="card" style="--accent:rgba(255,140,200,0.45);--icon-bg:rgba(255,140,200,0.12);">
+      <span class="card-status status-soon">Segera</span>
+      <div class="card-icon">🎨</div>
+      <h3>Desain & Visualisasi</h3>
+      <p>Galeri karya Canva & Photoshop. Auto-detect dari folder GitHub seperti halaman peta.</p>
+      <div class="card-footer">
+        <span class="card-count">Photoshop · Canva · Grafis</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 8. TENTANG SAYA -->
+    <a href="tentang_saya.html" class="card" style="--accent:rgba(255,200,120,0.45);--icon-bg:rgba(255,200,120,0.12);">
+      <span class="card-status status-soon">Segera</span>
+      <div class="card-icon">🪐</div>
+      <h3>Tentang Saya</h3>
+      <p>Latar belakang, visi karir, hobi, dan nilai-nilai profesional Ripan.</p>
+      <div class="card-footer">
+        <span class="card-count">Bio · Visi · Hobi</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- CONTACT STRIP -->
+  <div class="contact-strip">
+    <div class="contact-left">
+      <h3>Hubungi Ripan</h3>
+      <p>Terbuka untuk peluang kerja & kolaborasi profesional</p>
+    </div>
+    <div class="contact-links">
+      <a class="contact-btn" href="/cdn-cgi/l/email-protection#4628333435272a272b342f36272874757706212b272f2a6825292b">✉ Email</a>
+      <a class="contact-btn" href="https://linkedin.com/in/ripan-nursalam" target="_blank">in LinkedIn</a>
+    </div>
+  </div>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');
+let W,H,stars=[],meteors=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+function initStars(){stars=[];for(let i=0;i<220;i++){stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+0.2,alpha:Math.random()*0.7+0.2,speed:Math.random()*0.0004+0.0002,phase:Math.random()*Math.PI*2});}}
+function spawnMeteor(){meteors.push({x:Math.random()*W*1.2-W*0.1,y:-20,vx:3.5+Math.random()*2.5,vy:2.2+Math.random()*1.8,len:90+Math.random()*100,alpha:1,width:1.2+Math.random()*0.8});}
+function draw(t){ctx.clearRect(0,0,W,H);stars.forEach(s=>{const tw=0.5+0.5*Math.sin(t*s.speed*1000+s.phase);ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(200,220,255,${s.alpha*(0.6+0.4*tw)})`;ctx.fill();});meteors.forEach((m,i)=>{const l=Math.hypot(m.vx,m.vy);const tx=m.x-m.vx/l*m.len,ty=m.y-m.vy/l*m.len;const g=ctx.createLinearGradient(tx,ty,m.x,m.y);g.addColorStop(0,'rgba(180,220,255,0)');g.addColorStop(1,`rgba(255,255,255,${m.alpha})`);ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(m.x,m.y);ctx.strokeStyle=g;ctx.lineWidth=m.width;ctx.lineCap='round';ctx.stroke();ctx.beginPath();ctx.arc(m.x,m.y,m.width*1.5,0,Math.PI*2);ctx.fillStyle=`rgba(220,240,255,${m.alpha*0.9})`;ctx.fill();m.x+=m.vx;m.y+=m.vy;m.alpha-=0.012;if(m.alpha<=0||m.x>W+100||m.y>H+100)meteors.splice(i,1);});requestAnimationFrame(draw);}
+resize();initStars();window.addEventListener('resize',()=>{resize();in
