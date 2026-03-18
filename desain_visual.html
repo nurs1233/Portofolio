@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desain & Visualisasi — Ripan Nursalam</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0;padding:0;box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:#03060f;color:#e8eaf6;
+  font-family:'Space Grotesk',sans-serif;
+  min-height:100vh;overflow-x:hidden;
+}
+canvas#stars { position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none; }
+.container { position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:80px 24px 100px; }
+
+.back-btn {
+  position:fixed;top:20px;left:20px;z-index:100;
+  display:flex;align-items:center;gap:8px;
+  background:rgba(3,6,15,0.85);border:1px solid rgba(255,140,200,0.3);
+  color:#ff8cc8;font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
+  padding:8px 14px;text-decoration:none;backdrop-filter:blur(10px);transition:all 0.25s;
+}
+.back-btn:hover { background:rgba(255,140,200,0.1);border-color:rgba(255,140,200,0.7); }
+
+/* HERO */
+.hero { text-align:center;margin-bottom:48px;animation:fadeUp 0.8s ease both; }
+.hero-badge {
+  display:inline-block;font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:#ff8cc8;border:1px solid rgba(255,140,200,0.3);
+  padding:6px 16px;border-radius:100px;margin-bottom:20px;background:rgba(255,140,200,0.06);
+}
+.hero h1 {
+  font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;
+  background:linear-gradient(135deg,#fff 30%,#ff8cc8 65%,#ffb347 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;
+}
+.hero-sub { font-size:14px;color:rgba(180,210,240,0.55);font-weight:300; }
+.divider { width:50px;height:1px;background:linear-gradient(90deg,transparent,#ff8cc8,transparent);margin:22px auto 0; }
+
+/* STATUS BAR */
+.status-bar {
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:14px 20px;
+  display:flex;align-items:center;gap:12px;margin-bottom:32px;
+  font-size:12px;font-family:'Space Mono',monospace;
+  animation:fadeUp 0.8s ease 0.1s both;
+}
+.status-dot { width:8px;height:8px;border-radius:50%;flex-shrink:0;animation:pulse 2s infinite; }
+.status-dot.ok    { background:#50e8a0;box-shadow:0 0 6px rgba(80,232,160,0.6); }
+.status-dot.loading { background:#ffc850;box-shadow:0 0 6px rgba(255,200,80,0.6); }
+.status-dot.error { background:#ff8282;box-shadow:0 0 6px rgba(255,130,130,0.6);animation:none; }
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.status-text { color:rgba(180,200,240,0.6); }
+.status-text span { color:#ff8cc8; }
+.status-count { margin-left:auto;color:rgba(180,200,240,0.35); }
+
+/* FOLDER TREE */
+.folder-section { margin-bottom:36px;animation:fadeUp 0.8s ease 0.15s both; }
+.section-label { font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(180,200,240,0.4);margin-bottom:14px;font-family:'Space Mono',monospace; }
+.folder-tree {
+  background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);
+  border-radius:14px;padding:18px 20px;font-family:'Space Mono',monospace;font-size:12px;
+  max-height:260px;overflow-y:auto;
+}
+.folder-tree::-webkit-scrollbar{width:4px}
+.folder-tree::-webkit-scrollbar-thumb{background:rgba(255,140,200,0.2);border-radius:2px}
+.tree-root { color:rgba(255,200,80,0.8);font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px; }
+.tree-folder {
+  display:flex;align-items:center;gap:6px;padding:4px 0 4px 16px;
+  color:rgba(255,200,80,0.7);font-weight:700;
+  border-top:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:color 0.2s;
+}
+.tree-folder:hover { color:rgba(255,200,80,1); }
+.tree-file {
+  display:flex;align-items:center;gap:6px;padding:3px 0 3px 32px;
+  color:rgba(200,220,240,0.45);border-top:1px solid rgba(255,255,255,0.03);
+  cursor:pointer;transition:color 0.2s;font-size:11px;
+}
+.tree-file:hover { color:#ff8cc8; }
+.tree-empty { padding:4px 0 4px 32px;color:rgba(180,200,240,0.2);font-size:11px; }
+.tree-count { margin-left:auto;color:rgba(180,200,240,0.25);font-size:10px; }
+
+/* FILTER */
+.gallery-section { animation:fadeUp 0.8s ease 0.2s both; }
+.filter-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;align-items:center; }
+.filter-btn {
+  font-size:11px;padding:6px 14px;border-radius:100px;
+  border:1px solid rgba(255,255,255,0.1);color:rgba(180,200,240,0.55);
+  background:transparent;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all 0.2s;
+}
+.filter-btn:hover,.filter-btn.active { border-color:rgba(255,140,200,0.5);color:#ff8cc8;background:rgba(255,140,200,0.08); }
+.refresh-btn {
+  margin-left:auto;font-size:11px;padding:6px 14px;border-radius:100px;
+  border:1px solid rgba(255,140,200,0.2);color:rgba(255,140,200,0.6);
+  background:transparent;cursor:pointer;font-family:'Space Mono',monospace;
+  letter-spacing:0.08em;transition:all 0.2s;display:flex;align-items:center;gap:6px;
+}
+.refresh-btn:hover { border-color:rgba(255,140,200,0.5);color:#ff8cc8; }
+
+/* DESIGN GRID — sedikit lebih besar dari peta */
+.design-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:16px;
+}
+.design-card {
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+  border-radius:14px;overflow:hidden;cursor:pointer;transition:all 0.3s;
+  animation:fadeUp 0.6s ease both;
+}
+.design-card:hover { transform:translateY(-3px);border-color:rgba(255,140,200,0.35);box-shadow:0 8px 28px rgba(0,0,0,0.4); }
+
+.design-thumb {
+  width:100%;height:200px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.design-thumb img { width:100%;height:100%;object-fit:cover;transition:transform 0.4s; }
+.design-card:hover .design-thumb img { transform:scale(1.05); }
+.design-thumb-ph { display:flex;flex-direction:column;align-items:center;gap:8px; }
+.ph-icon { font-size:32px;opacity:0.3; }
+.ph-text { font-size:10px;color:rgba(180,200,240,0.25);font-family:'Space Mono',monospace; }
+
+.type-badge {
+  position:absolute;top:10px;right:10px;font-size:9px;padding:3px 9px;border-radius:100px;
+  font-family:'Space Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;
+  font-weight:700;backdrop-filter:blur(6px);
+}
+.b-poster    { background:rgba(255,140,200,0.22);color:#ff8cc8;border:1px solid rgba(255,140,200,0.3); }
+.b-infografis{ background:rgba(126,200,255,0.22);color:#7ec8ff;border:1px solid rgba(126,200,255,0.3); }
+.b-sosmed    { background:rgba(80,232,160,0.18);color:#50e8a0;border:1px solid rgba(80,232,160,0.3); }
+.b-layout    { background:rgba(255,200,80,0.18);color:#ffc850;border:1px solid rgba(255,200,80,0.3); }
+.b-lainnya   { background:rgba(184,140,255,0.18);color:#b88cff;border:1px solid rgba(184,140,255,0.3); }
+
+.design-info { padding:14px 16px; }
+.design-title { font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;line-height:1.3; }
+.design-meta  { font-size:11px;color:rgba(180,200,240,0.4);font-family:'Space Mono',monospace;margin-bottom:8px; }
+.design-tags  { display:flex;gap:4px;flex-wrap:wrap; }
+.design-tag   { font-size:10px;padding:2px 7px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);color:rgba(200,220,240,0.45); }
+
+/* STATES */
+.state-box { grid-column:1/-1;text-align:center;padding:64px 24px;color:rgba(180,200,240,0.35); }
+.state-icon { font-size:44px;margin-bottom:16px;opacity:0.4; }
+.state-title { font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:rgba(200,220,240,0.45);margin-bottom:8px; }
+.state-hint { font-size:12px;font-family:'Space Mono',monospace;line-height:1.9; }
+.spinner { width:36px;height:36px;border:2px solid rgba(255,140,200,0.15);border-top-color:#ff8cc8;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px; }
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* LIGHTBOX */
+#lightbox { display:none;position:fixed;inset:0;z-index:500;background:rgba(3,6,15,0.95);align-items:center;justify-content:center;flex-direction:column;gap:14px;backdrop-filter:blur(14px); }
+#lightbox.open { display:flex; }
+#lightbox img { max-width:88vw;max-height:75vh;border-radius:8px;border:1px solid rgba(255,140,200,0.15);object-fit:contain; }
+#lb-info { text-align:center; }
+#lb-title { font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:3px; }
+#lb-meta  { font-size:11px;color:rgba(180,200,240,0.4);font-family:'Space Mono',monospace; }
+#lb-close { position:absolute;top:18px;right:22px;font-size:22px;color:rgba(200,220,240,0.4);cursor:pointer;background:none;border:none;transition:color 0.2s; }
+#lb-close:hover { color:#ff8cc8; }
+.lb-nav { position:absolute;top:50%;font-size:20px;color:rgba(255,140,200,0.5);cursor:pointer;background:rgba(3,6,15,0.7);border:1px solid rgba(255,140,200,0.2);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;transform:translateY(-50%);transition:all 0.2s; }
+#lb-prev{left:16px}#lb-next{right:16px}
+.lb-nav:hover { color:#ff8cc8;border-color:rgba(255,140,200,0.6);background:rgba(255,140,200,0.1); }
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.design-grid{grid-template-columns:1fr}.container{padding:70px 16px 80px}}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<a href="index.html" class="back-btn">← Portfolio</a>
+
+<div id="lightbox">
+  <button id="lb-close">✕</button>
+  <button class="lb-nav" id="lb-prev">‹</button>
+  <img id="lb-img" src="" alt="">
+  <div id="lb-info"><div id="lb-title"></div><div id="lb-meta"></div></div>
+  <button class="lb-nav" id="lb-next">›</button>
+</div>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-badge">Desain & Grafis</div>
+    <h1>Desain & Visualisasi</h1>
+    <div class="hero-sub">Canva · Adobe Photoshop · Infografis · Poster · Layout</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="status-bar">
+    <div class="status-dot loading" id="statusDot"></div>
+    <div class="status-text" id="statusText">Menghubungkan ke <span>github.com/nurs1233/Portofoilio</span>...</div>
+    <div class="status-count" id="statusCount"></div>
+  </div>
+
+  <div class="folder-section">
+    <div class="section-label">// Struktur Folder Terdeteksi</div>
+    <div class="folder-tree">
+      <div class="tree-root">📁 desain/</div>
+      <div id="treeContent"><div class="tree-empty">Memuat struktur folder...</div></div>
+    </div>
+  </div>
+
+  <div class="gallery-section">
+    <div class="section-label">// Galeri Desain</div>
+    <div class="filter-row">
+      <button class="filter-btn active" data-cat="semua"     onclick="filterItems('semua',this)">Semua</button>
+      <button class="filter-btn"        data-cat="poster"    onclick="filterItems('poster',this)">Poster</button>
+      <button class="filter-btn"        data-cat="infografis"onclick="filterItems('infografis',this)">Infografis</button>
+      <button class="filter-btn"        data-cat="sosmed"    onclick="filterItems('sosmed',this)">Sosmed</button>
+      <button class="filter-btn"        data-cat="layout"    onclick="filterItems('layout',this)">Layout</button>
+      <button class="filter-btn"        data-cat="lainnya"   onclick="filterItems('lainnya',this)">Lainnya</button>
+      <button class="refresh-btn" onclick="loadFromGitHub()">↺ Refresh</button>
+    </div>
+    <div class="design-grid" id="designGrid">
+      <div class="state-box">
+        <div class="spinner"></div>
+        <div class="state-title">Memuat desain...</div>
+        <div class="state-hint">Mengambil data dari GitHub</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const GITHUB_USER  = 'nurs1233';
+const GITHUB_REPO  = 'Portofoilio';
+const DESAIN_PATH  = 'desain';
+const RAW_BASE     = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${DESAIN_PATH}`;
+const API_BASE     = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${DESAIN_PATH}`;
+const IMG_EXTS     = ['png','jpg','jpeg','webp','gif','bmp','tiff','tif'];
+
+let allItems=[], visibleItems=[], activeFilter='semua', lbIdx=0;
+
+const TYPE_META = {
+  poster:     {label:'Poster',     cls:'b-poster',     color:'rgba(255,140,200,0.12)'},
+  infografis: {label:'Infografis', cls:'b-infografis', color:'rgba(126,200,255,0.12)'},
+  sosmed:     {label:'Sosmed',     cls:'b-sosmed',     color:'rgba(80,232,160,0.12)'},
+  layout:     {label:'Layout',     cls:'b-layout',     color:'rgba(255,200,80,0.12)'},
+  lainnya:    {label:'Lainnya',    cls:'b-lainnya',    color:'rgba(184,140,255,0.12)'},
+};
+
+function isImage(n){return IMG_EXTS.some(e=>n.toLowerCase().endsWith('.'+e));}
+
+function folderToType(f){
+  const s=f.toLowerCase().replace(/[\s_\-]/g,'');
+  if(s.includes('poster')||s.includes('event')||s.includes('kegiatan')) return 'poster';
+  if(s.includes('info')||s.includes('grafis')||s.includes('data'))      return 'infografis';
+  if(s.includes('sosmed')||s.includes('instagram')||s.includes('ig')||s.includes('feed')||s.includes('story')) return 'sosmed';
+  if(s.includes('layout')||s.includes('laporan')||s.includes('cover')||s.includes('template')) return 'layout';
+  return 'lainnya';
+}
+
+function prettify(n){return n.replace(/\.[^.]+$/,'').replace(/[_\-]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());}
+
+function setStatus(state,text,count=''){
+  document.getElementById('statusDot').className='status-dot '+state;
+  document.getElementById('statusText').innerHTML=text;
+  document.getElementById('statusCount').textContent=count;
+}
+
+async function loadFromGitHub(){
+  setStatus('loading',`Menghubungkan ke <span>github.com/${GITHUB_USER}/${GITHUB_REPO}/desain</span>...`);
+  document.getElementById('designGrid').innerHTML=`<div class="state-box"><div class="spinner"></div><div class="state-title">Memuat desain...</div><div class="state-hint">Mengambil data dari GitHub</div></div>`;
+  document.getElementById('treeContent').innerHTML='<div class="tree-empty">Memuat...</div>';
+
+  try {
+    const rootRes=await fetch(API_BASE);
+    if(!rootRes.ok) throw new Error(`GitHub API ${rootRes.status} — folder "desain/" belum ada di repo`);
+    const rootItems=await rootRes.json();
+
+    allItems=[];
+    let treeHTML='';
+
+    const folders  = rootItems.filter(i=>i.type==='dir');
+    const rootImgs = rootItems.filter(i=>i.type==='file'&&isImage(i.name));
+
+    rootImgs.forEach(f=>{
+      allItems.push({title:prettify(f.name),meta:'desain/ · '+f.name,type:'lainnya',src:`${RAW_BASE}/${encodeURIComponent(f.name)}`,folder:'root'});
+    });
+    if(rootImgs.length) treeHTML+=`<div class="tree-file">🎨 ${rootImgs.length} file di root</div>`;
+
+    for(const folder of folders){
+      if(folder.name.startsWith('.')) continue;
+      const type=folderToType(folder.name);
+      const folderRes=await fetch(folder.url);
+      const folderItems=await folderRes.json();
+      const imgs=Array.isArray(folderItems)?folderItems.filter(i=>i.type==='file'&&isImage(i.name)):[];
+
+      treeHTML+=`<div class="tree-folder" onclick="filterItems('${type}',document.querySelector('[data-cat=\\'${type}\\']'))">
+        <span>📁</span><span>${folder.name}/</span><span class="tree-count">${imgs.length} file</span>
+      </div>`;
+
+      if(imgs.length===0){
+        treeHTML+=`<div class="tree-empty">— folder kosong</div>`;
+      } else {
+        imgs.forEach(f=>{
+          treeHTML+=`<div class="tree-file"><span>🎨</span><span>${f.name}</span></div>`;
+          allItems.push({
+            title:prettify(f.name),
+            meta:folder.name+' · '+f.name,
+            type,
+            src:`${RAW_BASE}/${encodeURIComponent(folder.name)}/${encodeURIComponent(f.name)}`,
+            folder:folder.name
+          });
+        });
+      }
+    }
+
+    document.getElementById('treeContent').innerHTML=treeHTML||'<div class="tree-empty">— belum ada file</div>';
+    setStatus('ok',`Terhubung ke <span>github.com/${GITHUB_USER}/${GITHUB_REPO}/desain</span>`,allItems.length>0?`${allItems.length} karya ditemukan`:'Belum ada karya');
+    renderGallery();
+
+  } catch(err){
+    console.error(err);
+    setStatus('error',`Gagal memuat — <span>${err.message}</span>`);
+    document.getElementById('treeContent').innerHTML='<div class="tree-empty">Gagal memuat</div>';
+    document.getElementById('designGrid').innerHTML=`
+      <div class="state-box">
+        <div class="state-icon">🎨</div>
+        <div class="state-title">Folder "desain/" belum ada</div>
+        <div class="state-hint">
+          Buat folder di GitHub:<br>
+          <code>desain/poster/.gitkeep</code><br>
+          <code>desain/infografis/.gitkeep</code><br>
+          lalu upload file karya desain di dalamnya
+        </div>
+      </div>`;
+  }
+}
+
+function renderGallery(){
+  const grid=document.getElementById('designGrid');
+  visibleItems=activeFilter==='semua'?allItems:allItems.filter(m=>m.type===activeFilter);
+  if(visibleItems.length===0){
+    grid.innerHTML=`<div class="state-box"><div class="state-icon">🎨</div><div class="state-title">${allItems.length===0?'Belum ada karya desain':'Tidak ada karya di kategori ini'}</div><div class="state-hint">${allItems.length===0?'Upload file gambar ke folder<br>desain/[subfolder]/ di GitHub':'Pilih kategori lain atau upload karya baru'}</div></div>`;
+    return;
+  }
+  grid.innerHTML=visibleItems.map((m,i)=>{
+    const tm=TYPE_META[m.type]||TYPE_META.lainnya;
+    return `<div class="design-card" style="animation-delay:${i*0.06}s" onclick="openLightbox(${i})">
+      <div class="design-thumb" style="background:${tm.color}">
+        <img src="${m.src}" alt="${m.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="design-thumb-ph" style="display:none"><div class="ph-icon">🎨</div><div class="ph-text">Gagal memuat</div></div>
+        <span class="type-badge ${tm.cls}">${tm.label}</span>
+      </div>
+      <div class="design-info">
+        <div class="design-title">${m.title}</div>
+        <div class="design-meta">${m.meta}</div>
+        <div class="design-tags"><span class="design-tag">${m.folder}</span><span class="design-tag">${tm.label}</span></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterItems(cat,btn){
+  activeFilter=cat;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderGallery();
+}
+
+function openLightbox(i){lbIdx=i;updateLB();document.getElementById('lightbox').classList.add('open');}
+function updateLB(){
+  const m=visibleItems[lbIdx];
+  document.getElementById('lb-img').src=m.src;
+  document.getElementById('lb-title').textContent=m.title;
+  document.getElementById('lb-meta').textContent=m.meta;
+}
+document.getElementById('lb-close').onclick=()=>document.getElementById('lightbox').classList.remove('open');
+document.getElementById('lb-prev').onclick=()=>{lbIdx=(lbIdx-1+visibleItems.length)%visibleItems.length;updateLB();};
+document.getElementById('lb-next').onclick=()=>{lbIdx=(lbIdx+1)%visibleItems.length;updateLB();};
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox')document.getElementById('lightbox').classList.remove('open');});
+document.addEventListener('keydown',e=>{
+  const lb=document.getElementById('lightbox');
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')lb.classList.remove('open');
+  if(e.key==='ArrowLeft'){lbIdx=(lbIdx-1+visibleItems.length)%visibleItems.length;updateLB();}
+  if(e.key==='ArrowRight'){lbIdx=(lbIdx+1)%visibleItems.length;updateLB();}
+});
+
+// STARFIELD
+const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');
+let W,H,stars=[],meteors=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+function initStars(){stars=[];for(let i=0;i<180;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+0.2,alpha:Math.random()*0.7+0.2,speed:Math.random()*0.0005+0.0002,phase:Math.random()*Math.PI*2});}
+function spawnMeteor(){meteors.push({x:Math.random()*W*1.2-W*0.1,y:-20,vx:3.5+Math.random()*2.5,vy:2.2+Math.random()*1.8,len:80+Math.random()*90,alpha:1,width:1+Math.random()*0.8});}
+function draw(t){ctx.clearRect(0,0,W,H);stars.forEach(s=>{const tw=0.5+0.5*Math.sin(t*s.speed*1000+s.phase);ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(200,220,255,${s.alpha*(0.6+0.4*tw)})`;ctx.fill();});meteors.forEach((m,i)=>{const l=Math.hypot(m.vx,m.vy);const tx=m.x-m.vx/l*m.len,ty=m.y-m.vy/l*m.len;const g=ctx.createLinearGradient(tx,ty,m.x,m.y);g.addColorStop(0,'rgba(180,220,255,0)');g.addColorStop(1,`rgba(255,255,255,${m.alpha})`);ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(m.x,m.y);ctx.strokeStyle=g;ctx.lineWidth=m.width;ctx.lineCap='round';ctx.stroke();m.x+=m.vx;m.y+=m.vy;m.alpha-=0.013;if(m.alpha<=0||m.x>W+100||m.y>H+100)meteors.splice(i,1);});requestAnimationFrame(draw);}
+resize();initStars();window.addEventListener('resize',()=>{resize();initStars();});
+setInterval(spawnMeteor,3200);setTimeout(spawnMeteor,600);
+requestAnimationFrame(draw);
+
+loadFromGitHub();
+</script>
+</body>
+</html>
